@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShop", "WebShop\WebShop.csproj", "{D0726025-F030-4687-B8BE-CBE5D9949AED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShop.Tests", "WebShop.Tests\WebShop.Tests.csproj", "{F78F7BCF-16E4-4856-8D45-6C3AA3E933FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0726025-F030-4687-B8BE-CBE5D9949AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0726025-F030-4687-B8BE-CBE5D9949AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0726025-F030-4687-B8BE-CBE5D9949AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0726025-F030-4687-B8BE-CBE5D9949AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F78F7BCF-16E4-4856-8D45-6C3AA3E933FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78F7BCF-16E4-4856-8D45-6C3AA3E933FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78F7BCF-16E4-4856-8D45-6C3AA3E933FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78F7BCF-16E4-4856-8D45-6C3AA3E933FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

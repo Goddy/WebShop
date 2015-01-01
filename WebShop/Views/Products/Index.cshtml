@@ -1,0 +1,102 @@
+﻿@using WebShop.Models
+@model List<WebShop.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    var categories = ViewData["Categories"] as List<String>;
+    var price = ViewData["Price"] as Dictionary<int, int>;
+    var lastPrice = 0;
+    var searchClassCat = new {@class = "search search-category"};
+    var searchClassPrice = new { @class = "search search-price" };
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div class="row searchRow">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+            <input id="searchBox" type="text" class="form-control search-text" placeholder="Search">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-3">
+        <div class="well well-lg">
+            @foreach (var cat in categories)
+            {
+                <div style="clear: both;">
+                    @Html.CheckBox(cat, false, searchClassCat)
+                    @Html.Label(cat)
+                </div>
+            }
+        </div>
+        <div class="well well-lg">
+            @foreach (var p in price)
+            {
+                <div style="clear: both;">
+                    @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
+                    @Html.Label("Between " + p.Key + " and " + p.Value)
+                </div>
+                lastPrice = p.Value;
+            }
+            <div style="clear: both;">
+                @Html.RadioButton("cat",  lastPrice + ", " + lastPrice * 100 , searchClassPrice)
+                @Html.Label("Larger than " + lastPrice)
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8">
+        <div class="container">
+            <div class="well well-sm">
+                <strong>Category Title</strong>
+                <div class="btn-group">
+                    <a href="#" id="list" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-th-list">
+                        </span>List
+                    </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-th"></span>Grid
+                    </a>
+                </div>
+            </div>
+            <div id="result">
+
+            </div>
+        </div>
+            <a href="2" id="more" class="btn btn-info">More results</a>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/webshop")
+    <script type="text/javascript">
+        (function (searchProd) {
+            //For all searches, use a change event.
+            $(".search").change(function() {
+                searchProd.search(1, true);
+            });
+            //For the text search, use a delay as to not execute searches with every keyup.
+            $("#searchBox").bind("input keyup", function () {
+                var $this = $(this);
+                var delay = 500; // 0.5 seconds delay after last input.
+
+                clearTimeout($this.data("timer"));
+                $this.data("timer", setTimeout(function () {
+                    $this.removeData("timer");
+                    //Execute method after the delay.
+                    searchProd.search(1, true);
+                }, delay));
+            });
+            //Functionality of more btn.
+            $("#more").click(function (e) {
+                e.preventDefault();
+                searchProd.search($("#more").attr("href"), false);
+            });
+        })(webShop.searchProducts)
+    </script>
+}
+
+
