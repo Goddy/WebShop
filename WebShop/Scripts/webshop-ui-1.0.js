@@ -59,3 +59,16 @@ webShop.searchProducts = (function($, utils) {
     }
 }(jQuery, webShop.utils));
 
+webShop.basketUtils = (function ($, utils) {
+    return {
+        addToBasket: function (element) {
+            var id = element.attr("href");
+            var data = { productId: id };
+            return utils.jsonPost("/Products/AddToBasket/", data, function () {
+                console.log("Product added to session");
+                $("#addToBasketModal").modal();
+            });
+        }
+    }
+}(jQuery, webShop.utils));
+

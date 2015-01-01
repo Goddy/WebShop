@@ -9,5 +9,6 @@ namespace WebShop.Services
     public interface IOrderService
     {
         List<Order> GetAllOrders();
+        Order BuildOrderFromBasket(HashSet<int> products);
     }
 }

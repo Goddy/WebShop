@@ -45,7 +45,7 @@
                 lastPrice = p.Value;
             }
             <div style="clear: both;">
-                @Html.RadioButton("cat",  lastPrice + ", " + lastPrice * 100 , searchClassPrice)
+                @Html.RadioButton("cat", lastPrice + ", " + lastPrice*100, searchClassPrice)
                 @Html.Label("Larger than " + lastPrice)
             </div>
         </div>
@@ -67,16 +67,41 @@
 
             </div>
         </div>
-            <a href="2" id="more" class="btn btn-info">More results</a>
+        <a href="2" id="more" class="btn btn-info">More results</a>
     </div>
 </div>
+
+<div class="modal fade" id="addToBasketModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+                <a href="/Basket/CheckOut" class="btn btn-primary">Go to cart</a>
+</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @section Scripts {
     @Scripts.Render("~/bundles/webshop")
     <script type="text/javascript">
-        (function (searchProd) {
+        (function ($, searchProd, basketUtils) {
+            function defaultSearch() {
+                searchProd.search(1, true);
+            }
+
+            //On load, load all products
+            defaultSearch();
             //For all searches, use a change event.
             $(".search").change(function() {
-                searchProd.search(1, true);
+                defaultSearch();
             });
             //For the text search, use a delay as to not execute searches with every keyup.
             $("#searchBox").bind("input keyup", function () {
@@ -87,7 +112,7 @@
                 $this.data("timer", setTimeout(function () {
                     $this.removeData("timer");
                     //Execute method after the delay.
-                    searchProd.search(1, true);
+                    defaultSearch();
                 }, delay));
             });
             //Functionality of more btn.
@@ -95,7 +120,12 @@
                 e.preventDefault();
                 searchProd.search($("#more").attr("href"), false);
             });
-        })(webShop.searchProducts)
+
+            $("body").delegate(".add-to-cart", "click", function (e) {
+                e.preventDefault();
+                basketUtils.addToBasket($(this));
+            });
+        })(jQuery, webShop.searchProducts, webShop.basketUtils)
     </script>
 }
 

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using WebShop.Models;
 using WebShop.Services;
@@ -69,8 +64,10 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {
+            //Todo: Does not work for the images. Add extension and make sure image path is saved.
             if (productImage != null && productImage.ContentLength > 0)
             {
                 var uploadPath = Server.MapPath("~/Images/Custom/") + Guid.NewGuid();
@@ -92,9 +89,18 @@ namespace WebShop.Controllers
             return PartialView(products.ToPagedList(page, 10));        
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public void AddToBasket(int productId)
+        {
+            var cartProducts = (Session["cartProducts"] as HashSet<int>) ?? new HashSet<int>();
+            cartProducts.Add(productId);
+            Session["cartProducts"] = cartProducts;
+        }
+
         private Dictionary<int, int> getPriceValues()
         {
-            return new Dictionary<int, int>()
+            return new Dictionary<int, int>
             {
                 { 0, 100 },
                 { 100, 500 },

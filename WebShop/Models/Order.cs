@@ -8,6 +8,11 @@ namespace WebShop.Models
     /// </summary>
     public class Order : AbstractEntity<int>
     {
+        public Order()
+        {
+            OrderProducts = new List<OrderProduct>();
+        }
+
         public Status Status { get; set; }
     
         public virtual ApplicationUser Account { get; set; }
@@ -16,7 +21,7 @@ namespace WebShop.Models
 
         public double GetTotalPrice()
         {
-            return OrderProducts.Sum(product => product.getTotalPrice());
+            return OrderProducts.Sum(product => product.Total);
         }
     }
 }

@@ -1,0 +1,51 @@
+﻿@model WebShop.Models.Order
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CheckOut</h2>
+
+@if (!Model.OrderProducts.Any())
+{
+    <p>Basket is empty.</p>
+}
+else
+{
+    <table class="table table-responsive table-striped">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            #
+        </th>
+        <th>
+            Subtotal
+        </th>
+    </tr>
+    @foreach (var product in Model.OrderProducts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(prod => product.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(prod => product.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(prod => product.Total)
+            </td>
+        </tr>
+    }
+        <tr>
+            <td colspan="2">
+                Total:
+            </td>
+            <td>
+                @Model.GetTotalPrice()
+            </td>
+        </tr>
+    </table>
+}
+
