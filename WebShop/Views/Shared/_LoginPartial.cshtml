@@ -4,15 +4,14 @@
 
     @if (Request.IsAuthenticated)
     {
-        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
-        {
-            @Html.AntiForgeryToken()
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-
-        }
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;@User.Identity.Name<b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Profile" })</li>
+                <li>@Html.ActionLink("Log off", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Log off" })</li>
+            </ul>
+        </li>
+        
     }
     else
     {
@@ -21,6 +20,6 @@
     }
 
     <li>
-        <a href="/Basket/CheckOut" class="glyphicon glyphicon-shopping-cart" ></a>
+        <a href="/Basket/CheckOut" class="glyphicon glyphicon-shopping-cart"></a>
     </li>
 </ul>
