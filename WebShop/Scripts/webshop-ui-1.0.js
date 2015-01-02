@@ -16,7 +16,6 @@ webShop.utils = {
         this.postOrGet("GET", url, data, func);
     },
     jsonPost: function (url, data, func) {
-        console.log("Executed jsonPost");
         this.postOrGet("POST", url, data, func);
     }
 };
@@ -41,7 +40,7 @@ webShop.searchProducts = (function($, utils) {
             });
 
             var data = { categories: cat, minPrice: price[0], maxPrice : price[1], searchText: searchString, page : pageNr };
-            return utils.jsonPost("/Products/Search/", data, function (data) {
+            return utils.jsonPost("/Products/_SearchPartial/", data, function (data) {
                 if (clearHtml) {
                     resultDiv.html(data);
                     moreBtn.show();

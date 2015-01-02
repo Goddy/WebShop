@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WebShop.Models;
 
 namespace WebShop.Services
@@ -9,6 +10,7 @@ namespace WebShop.Services
     public interface IOrderService
     {
         List<Order> GetAllOrders();
-        Order BuildOrderFromBasket(HashSet<int> products);
+        Order BuildAndSaveOrderFromCheckout(OrderProductList orderProductList, String userId);
+        OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
     }
 }

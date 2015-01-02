@@ -1,7 +1,10 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Security;
+using Microsoft.Ajax.Utilities;
 using WebGrease.Css.Extensions;
 using WebShop.Models;
 using WebShop.Repositories;
@@ -13,11 +16,11 @@ namespace WebShop.Services
     /// </summary>
     public class OrderService : IOrderService
     {
-        private UnitOfWork _uow;
+        private readonly UnitOfWork _uow;
 
-        public OrderService()
+        public OrderService(UnitOfWork uow)
         {
-            _uow = new UnitOfWork();
+            _uow = uow;
         }
 
         public List<Order> GetAllOrders()
@@ -25,11 +28,22 @@ namespace WebShop.Services
             return _uow.OrderRepository.GetAll().ToList();
         }
 
-        public Order BuildOrderFromBasket(HashSet<int> products)
+        public Order BuildAndSaveOrderFromCheckout(OrderProductList orderProductList, String userId)
         {
-            var order = new Order();
-            Parallel.ForEach(products, x => order.OrderProducts.Add(new OrderProduct(_uow.ProductRepository.Get(x), 1)));
+            //Make sure the user is fetched
+            ApplicationUser user = _uow.Context.Users.Find(userId);
+            //Create the order
+            var order = new Order {Account = user};
+            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(_uow.ProductRepository.Get(x.ProductId), x.Amount)));
+            _uow.OrderRepository.Add(order);
             return order;
+        }
+
+   public OrderProductList BuildOrderProductListFromBasket(HashSet<int> products)
+        {
+            var orderList = new OrderProductList();
+            products.ForEach(x => orderList.OrderProductModels.Add(new OrderProductModel(_uow.ProductRepository.Get(x), 1)));
+            return orderList;
         }
     }
 }

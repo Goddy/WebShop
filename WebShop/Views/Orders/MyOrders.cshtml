@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebShop.Models.Order>
+
+@{
+    ViewBag.Title = "MyOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyOrders</h2>
+
+@Html.Partial("_ResultMessage")
+
+@if (!Model.Any())
+{
+    <p>No Orders found.</p>
+}
+else {
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+            <th>Products</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Status)
+                </td>
+                <td>
+                    <ul class="list-group">
+                        @foreach (var product in item.OrderProducts)
+                        {
+                            <li class="list-group-item">@Html.DisplayFor(m => product.Product.Name) (@Html.DisplayFor(m => product.Amount))</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */})
+                </td>
+            </tr>
+        }
+
+    </table>
+}

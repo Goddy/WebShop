@@ -10,9 +10,14 @@ namespace WebShop.Repositories
     /// </summary>
     public class UnitOfWork : IDisposable
     {
-        private WebShopContext _context = new WebShopContext();
+        private readonly WebShopContext _context;
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<Product> _productRepository;
+
+        public UnitOfWork(WebShopContext webShopContext)
+        {
+            this._context = webShopContext;
+        }
 
         public GenericRepository<Order> OrderRepository
         {

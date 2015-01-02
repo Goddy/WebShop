@@ -21,11 +21,11 @@ namespace WebShop.Services
     /// </summary>
     public class ProductService : IProductService
     {
-        private UnitOfWork _uow;
+        private readonly UnitOfWork _uow;
 
-        public ProductService()
+        public ProductService(UnitOfWork uow)
         {
-            _uow = new UnitOfWork();
+            _uow = uow;
         }
 
         public List<Product> GetAllProducts()

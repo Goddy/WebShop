@@ -1,5 +1,5 @@
 ﻿@using WebShop.Models
-@model List<WebShop.Models.Product>
+@model IEnumerable<WebShop.Models.Product>
 @{
     ViewBag.Title = "Index";
     var categories = ViewData["Categories"] as List<String>;
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div id="result">
-
+                @Html.Partial("_SearchPartial")
             </div>
         </div>
         <a href="2" id="more" class="btn btn-info">More results</a>
@@ -97,8 +97,6 @@
                 searchProd.search(1, true);
             }
 
-            //On load, load all products
-            defaultSearch();
             //For all searches, use a change event.
             $(".search").change(function() {
                 defaultSearch();

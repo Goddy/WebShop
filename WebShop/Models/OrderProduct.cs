@@ -8,6 +8,10 @@ namespace WebShop.Models
     /// </summary>
     public class OrderProduct : AbstractEntity<int>
     {
+        public OrderProduct()
+        {
+        }
+
         public OrderProduct(Product product, int amount)
         {
             Product = product;
@@ -17,6 +21,9 @@ namespace WebShop.Models
         public int Amount { get; set; }
         public virtual Order Order { get; set; }
 
-        public double Total { get { return Amount * Product.Price ; } }
+        public double Total
+        {
+            get { return Product != null ? Amount*Product.Price : 0; }
+        }
     }
 }

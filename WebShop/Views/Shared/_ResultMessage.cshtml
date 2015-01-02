@@ -1,0 +1,8 @@
+﻿@if (ViewBag.StatusMessage != null)
+{
+    <div class="alert alert-success alert-dismissable">@ViewBag.StatusMessage</div>
+}
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissable">@TempData["StatusMessage"]</div>
+}

@@ -24,7 +24,7 @@ namespace WebShop.Controllers
         {
             ViewData["Categories"] = _productService.GetAllCategories();
             ViewData["Price"] = getPriceValues();
-            return View(_productService.GetAllProducts());
+            return View(_productService.GetAllProducts().ToPagedList(1, 10));
         }
 
         // GET: Products
@@ -82,7 +82,7 @@ namespace WebShop.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public PartialViewResult Search(List<String> categories, int? minPrice, int? maxPrice, String searchText, int page)
+        public PartialViewResult _SearchPartial(List<String> categories, int? minPrice, int? maxPrice, String searchText, int page)
         {
             //Todo: add max per page result checkbox
             var products = _productService.SearchProducts(categories, minPrice, maxPrice, searchText);
