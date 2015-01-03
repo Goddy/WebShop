@@ -55,7 +55,7 @@ namespace WebShop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return IsPaying() ? ReturnToOrders() : RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -127,7 +127,8 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name,
+                    Address = new Address {Street = model.Street, Number = model.Number, City = model.City, PostalCode = model.PostalCode, Country = model.Country}};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -138,8 +139,7 @@ namespace WebShop.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    return IsPaying() ? ReturnToOrders() : RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -416,6 +416,16 @@ namespace WebShop.Controllers
             }
         }
 
+        private bool IsPaying()
+        {
+            return (bool) Session["readyToPay"];
+        }
+
+        private ActionResult ReturnToOrders()
+        {
+            return Redirect("/Basket/CheckOut");
+        }
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -455,4 +465,6 @@ namespace WebShop.Controllers
         }
         #endregion
     }
+
+
 }

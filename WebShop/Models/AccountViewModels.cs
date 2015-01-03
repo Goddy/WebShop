@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.Models
@@ -65,6 +66,10 @@ namespace WebShop.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +84,26 @@ namespace WebShop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Street")]
+        [Required]
+        public string Street { get; set; }
+
+        [Display(Name = "Number")]
+        [Required]
+        public int Number { get; set; }
+
+        [Display(Name = "Postal Code")]
+        [Required]
+        public int PostalCode { get; set; }
+
+        [Display(Name = "City")]
+        [Required]
+        public string City { get; set; }
+
+        [Display(Name = "Country")]
+        [Required]
+        public string Country { get; set; }
     }
 
     public class ResetPasswordViewModel

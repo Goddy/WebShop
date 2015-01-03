@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace WebShop.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual Address Address { get; set; }
+        public String Name { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

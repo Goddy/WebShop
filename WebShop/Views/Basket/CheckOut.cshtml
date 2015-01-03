@@ -14,7 +14,7 @@
 else
 {
 
-    using (Html.BeginForm())
+    using (Html.BeginForm(new { id = "form" }))
     {
         <div class="form-horizontal">
             @Html.AntiForgeryToken()
@@ -61,10 +61,32 @@ else
 
             <div class="form-group">
                 <div class="pull-right">
-                    <input class="btn btn-danger" value="Pay" type="submit">
+                    <input class="btn btn-danger" id="submit" value="Pay" type="submit">
                 </div>
             </div>
         </div>
     }
 }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/webshop")
+    <script type="text/javascript">
+        (function ($, utils) {
+            var done = false;
+            $("#submit").click(function (e) {
+                if (done) {
+                    done = false; // reset flag
+                    return; // let the event bubble away
+                }
+                e.preventDefault();
+                utils.jsonPost("/Basket/ReadyToPay", null, function () {
+                    done = true; // set flag
+                    $(e.currentTarget).trigger("click");
+                });               
+            });
+
+        })(jQuery, webShop.utils)
+    </script>
+}
+
 

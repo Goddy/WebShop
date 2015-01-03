@@ -24,6 +24,13 @@ namespace WebShop.Controllers
             return View(_orderService.BuildOrderProductListFromBasket(cartProducts));
         }
 
+        [AllowAnonymous]
+        public void ReadyToPay()
+        {
+            //Set session attribute to go to overview after registration/login
+            Session["readyToPay"] = true;
+        }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -31,7 +38,10 @@ namespace WebShop.Controllers
         {
             _orderService.BuildAndSaveOrderFromCheckout(orderProductList, User.Identity.GetUserId());
             TempData["StatusMessage"] = "Order Added";
+            //Remove sessiondata
+            Session["readyToPay"] = false;
             return Redirect("/Orders/MyOrders");
         }
+        
     }
 }
