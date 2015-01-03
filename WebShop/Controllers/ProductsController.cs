@@ -12,7 +12,7 @@ namespace WebShop.Controllers
 {
     public class ProductsController : Controller
     {
-        private IProductService _productService;
+        private readonly IProductService _productService;
         public ProductsController() {}
 
         public ProductsController(IProductService productService)
@@ -31,6 +31,12 @@ namespace WebShop.Controllers
         public ActionResult Add()
         {
             return View();
+        }
+
+        // GET: Products
+        public ActionResult Overview()
+        {
+            return View(_productService.GetAllProducts());
         }
 
         // GET: Products

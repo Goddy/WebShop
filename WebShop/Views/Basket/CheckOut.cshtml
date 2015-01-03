@@ -40,20 +40,21 @@ else
                                 @Html.DisplayFor(m => m.OrderProductModels[i].Product.Name)
                             </td>
                             <td>
-                                @Html.EditorFor(m => m.OrderProductModels[i].Amount, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.EditorFor(m => m.OrderProductModels[i].Amount, new {htmlAttributes = new {@class = "form-control amount"}})
+                                <p class="hidden price">@Html.DisplayFor(m => m.OrderProductModels[i].Product.Price)</p>
                             </td>
                             <td>
-                                @Html.DisplayFor(m => m.OrderProductModels[i].Total)
+                                <p class="subTotal">@Html.DisplayFor(m => m.OrderProductModels[i].Total)</p>
                             </td>
                         </tr>
                     }
 
                     <tr>
                         <td colspan="2">
-                            Total:
+                            <p class="pull-right">Total:</p>
                         </td>
                         <td>
-                            @Html.DisplayFor(m => m.Total)
+                            <p class="grandTotal">@Html.DisplayFor(m => m.Total)</p>
                         </td>
                     </tr>
                 </table>
@@ -71,18 +72,38 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/webshop")
     <script type="text/javascript">
-        (function ($, utils) {
+        (function($, utils) {
             var done = false;
-            $("#submit").click(function (e) {
+            function updateTotal() {
+                var total = 0;
+                $(".subTotal").each(function() {
+                    total = total + parseInt($(this).text());
+                });
+                $(".grandTotal").text(total);
+            }
+
+            function updateSubTotal(element) {
+                var price = parseInt(element.next().text());
+                var amount = parseInt(element.val());
+                var subTotal = element.parent().next().find("p.subTotal");
+                subTotal.html(price * amount);
+            }
+
+            $(".amount").change(function(e) {
+                updateSubTotal($(this));
+                updateTotal();
+            });
+
+            $("#submit").click(function(e) {
                 if (done) {
                     done = false; // reset flag
                     return; // let the event bubble away
                 }
                 e.preventDefault();
-                utils.jsonPost("/Basket/ReadyToPay", null, function () {
+                utils.jsonPost("/Basket/ReadyToPay", null, function() {
                     done = true; // set flag
                     $(e.currentTarget).trigger("click");
-                });               
+                });
             });
 
         })(jQuery, webShop.utils)

@@ -418,7 +418,8 @@ namespace WebShop.Controllers
 
         private bool IsPaying()
         {
-            return (bool) Session["readyToPay"];
+            var ready = Session["readyToPay"];
+            return ready !=null && (bool) ready;
         }
 
         private ActionResult ReturnToOrders()
