@@ -10,7 +10,8 @@ namespace WebShop.Services
     public interface IOrderService
     {
         List<Order> GetAllOrders();
-        Order BuildAndSaveOrderFromCheckout(OrderProductList orderProductList, String userId);
+        Order BuildAndSaveOrder(OrderProductList orderProductList, String userId);
         OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
+        OrderProductList RepopulateProductOrderList(OrderProductList list);
     }
 }

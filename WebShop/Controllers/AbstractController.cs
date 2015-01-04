@@ -22,5 +22,15 @@ namespace WebShop.Controllers
         {
             return _accountService.GetAccount(User.Identity.GetUserId());
         }
+
+        protected bool IsAuthenticated()
+        {
+            return User.Identity.IsAuthenticated;
+        }
+
+        protected void AddStatusMessage(string statusMessage)
+        {
+            TempData["StatusMessage"] = statusMessage;
+        }
     }
 }

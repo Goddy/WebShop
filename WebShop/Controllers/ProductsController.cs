@@ -10,12 +10,12 @@ using WebShop.Services;
 
 namespace WebShop.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : AbstractController
     {
         private readonly IProductService _productService;
-        public ProductsController() {}
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IAccountService accountService)
+            : base(accountService)
         {
             _productService = productService;
         }
@@ -44,10 +44,10 @@ namespace WebShop.Controllers
         {
             if (id != null)
             {
-                Product product = _productService.GetProduct(id.GetValueOrDefault());
+                var product = _productService.GetProduct(id.GetValueOrDefault());
                 return product == null ? (ActionResult) HttpNotFound() : View(product);
             }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return View("Error");
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace WebShop.Controllers
                 var result = await _productService.AddProduct(product);
                 if (result != null)
                 {
-                    ViewBag.StatusMessage = "Success";
+                    AddStatusMessage("Product " + result.Name + " was successfully added.");
                     return View(new Product());
                 }
             }
@@ -73,16 +73,22 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {
-            //Todo: Does not work for the images. Add extension and make sure image path is saved.
+            //Todo: Image is not saved + extension not specified
             if (productImage != null && productImage.ContentLength > 0)
             {
                 var uploadPath = Server.MapPath("~/Images/Custom/") + Guid.NewGuid();
                 productImage.SaveAs(uploadPath);
-                var images = product.Images ?? new List<Image>();
-                images.Add(new Image(uploadPath, null));
-                product.Images = images;
+                var image = new Image(uploadPath, null);
+                product.Image = image;
+                await _productService.SaveProduct(product, image);
             }
-            var result = await _productService.SaveProduct(product);
+            else
+            {
+                await _productService.SaveProduct(product);
+            }
+
+            AddStatusMessage("Product updated.");
+            
             return View();
         }
 

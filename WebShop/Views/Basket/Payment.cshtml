@@ -1,0 +1,96 @@
+﻿@using WebShop.Models
+@model WebShop.Models.OrderProductList
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var addressModel = ViewBag.address as Address;
+}
+
+<h2>Payment</h2>
+@using (Html.BeginForm(new {id = "form"}))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Subtotal
+                    </th>
+                </tr>
+                @for (var i = 0; i < Model.OrderProductModels.Count(); ++i)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => m.OrderProductModels[i].Product.Name)</td>
+                        <td>@Html.DisplayFor(m => m.OrderProductModels[i].Amount)</td>
+                        <td>@Html.DisplayFor(m => m.OrderProductModels[i].Total)</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td colspan="2">
+                        <p class="pull-right">Total:</p></td>
+                    <td>@Html.DisplayFor(m => m.Total)</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <h3>Billing/Shipping information</h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => addressModel.Street)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => addressModel.Street)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => addressModel.Number)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => addressModel.Number)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => addressModel.PostalCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => addressModel.PostalCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => addressModel.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => addressModel.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => addressModel.Country)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => addressModel.Country)
+                </dd>
+
+            </dl>
+        </div>
+
+        <div class="pull-right">
+            <input class="btn btn-danger" id="submit" value="Confirm payment" type="submit">
+        </div>
+
+    </div>
+}
+    
+

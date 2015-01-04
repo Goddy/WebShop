@@ -38,6 +38,13 @@ namespace WebShop.Services
             return _uow.Context.Products.Select(p => p.Category).Distinct().ToList();
         }
 
+        public Task<Product> SaveProduct(Product product, Image image)
+        {
+            Image img = _uow.Context.Images.Add(image);
+            product.Image = img;
+            return _uow.ProductRepository.AddAsync(product);
+        }
+
         public Task<Product> AddProduct(Product product)
         {
             return _uow.ProductRepository.AddAsync(product);

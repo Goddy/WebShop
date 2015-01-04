@@ -62,7 +62,7 @@ else
 
             <div class="form-group">
                 <div class="pull-right">
-                    <input class="btn btn-danger" id="submit" value="Pay" type="submit">
+                    <input class="btn btn-danger" id="submit" value="Checkout" type="submit">
                 </div>
             </div>
         </div>
@@ -93,19 +93,6 @@ else
                 updateSubTotal($(this));
                 updateTotal();
             });
-
-            $("#submit").click(function(e) {
-                if (done) {
-                    done = false; // reset flag
-                    return; // let the event bubble away
-                }
-                e.preventDefault();
-                utils.jsonPost("/Basket/ReadyToPay", null, function() {
-                    done = true; // set flag
-                    $(e.currentTarget).trigger("click");
-                });
-            });
-
         })(jQuery, webShop.utils)
     </script>
 }

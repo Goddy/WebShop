@@ -9,11 +9,6 @@ namespace WebShop.Models
     /// </summary>
     public class Product : AbstractEntity<int>
     {
-        public Product()
-        {
-            Images = new List<Image>();
-        }
-
         [Required]
         public String Name { get; set; }
         public String Description { get; set; }
@@ -22,7 +17,7 @@ namespace WebShop.Models
         [Required]
         public double Price { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual Image Image { get; set; }
     
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }

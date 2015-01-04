@@ -424,7 +424,7 @@ namespace WebShop.Controllers
 
         private ActionResult ReturnToOrders()
         {
-            return Redirect("/Basket/CheckOut");
+            return RedirectToAction("Payment", "Basket");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

@@ -21,7 +21,9 @@ namespace WebShop.Controllers
         public ActionResult CheckOut()
         {
             var cartProducts = (Session["cartProducts"] as HashSet<int>) ?? new HashSet<int>();
-            return View(_orderService.BuildOrderProductListFromBasket(cartProducts));
+            var order = _orderService.BuildOrderProductListFromBasket(cartProducts);
+            Session["order"] = order;
+            return View(order);
         }
 
         [AllowAnonymous]
@@ -31,17 +33,36 @@ namespace WebShop.Controllers
             Session["readyToPay"] = true;
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CheckOut(OrderProductList orderProductList)
         {
-            _orderService.BuildAndSaveOrderFromCheckout(orderProductList, User.Identity.GetUserId());
-            TempData["StatusMessage"] = "Order Added";
-            //Remove sessiondata
-            Session["readyToPay"] = false;
-            return Redirect("/Orders/MyOrders");
+            Session["order"] = orderProductList;
+            Session["readyToPay"] = true;
+            return RedirectToAction("Payment");
+            
         }
-        
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Payment()
+        {
+            Session["readyToPay"] = false;
+            var orderProductList = Session["order"] as OrderProductList;
+            ViewBag.address = GetUser().Address;
+            //Todo: Since the product object disappears in the model, we need to repopulate those objects, why????
+            return View(_orderService.RepopulateProductOrderList(orderProductList));
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Payment(OrderProductList list)
+        {
+            var orderProductList = Session["order"] as OrderProductList;
+            _orderService.BuildAndSaveOrder(orderProductList, User.Identity.GetUserId());
+            AddStatusMessage("Order successfully processed.");
+            Session["order"] = null;
+            return RedirectToAction("MyOrders","Orders");
+        }
     }
 }
