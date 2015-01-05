@@ -10,7 +10,7 @@ namespace WebShop.Models
         public virtual T Id { get; set; }
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

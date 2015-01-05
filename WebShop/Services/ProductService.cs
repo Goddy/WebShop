@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.EnterpriseServices;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Antlr.Runtime.Misc;
-using Microsoft.Ajax.Utilities;
-using WebShop.Contexts;
 using WebShop.Models;
 using WebShop.Repositories;
-using System.Linq.Expressions;
-using System.Web;
 using LinqKit;
 
 namespace WebShop.Services
@@ -30,7 +22,7 @@ namespace WebShop.Services
 
         public List<Product> GetAllProducts()
         {
-            return _uow.ProductRepository.GetAll().ToList<Product>();
+            return _uow.ProductRepository.GetAll().ToList();
         }
 
         public List<string> GetAllCategories()
@@ -40,7 +32,7 @@ namespace WebShop.Services
 
         public Task<Product> SaveProduct(Product product, Image image)
         {
-            Image img = _uow.Context.Images.Add(image);
+            var img = _uow.Context.Images.Add(image);
             product.Image = img;
             return _uow.ProductRepository.AddAsync(product);
         }
@@ -61,7 +53,6 @@ namespace WebShop.Services
                 .And(FilterCategories(catList))
                 .And(FilterPrice(minPrice, maxPrice))
                 .And(FilterSearchString(searchString));
-
             return new List<Product>(_uow.ProductRepository.FindAll(predicate));
         }
 

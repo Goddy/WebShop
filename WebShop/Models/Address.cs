@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WebShop.Models
+﻿namespace WebShop.Models
 {
     /// <summary>
     /// Summary description for Address

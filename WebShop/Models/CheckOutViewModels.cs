@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace WebShop.Models
 {
@@ -13,9 +11,9 @@ namespace WebShop.Models
 
         public OrderProductModel(Product product, int amount)
         {
-            this.Amount = amount;
-            this.Product = product;
-            this.ProductId = product.Id;
+            Amount = amount;
+            Product = product;
+            ProductId = product.Id;
         }
         public Product Product { get; set; }
         public int Amount { get; set; }
@@ -31,12 +29,12 @@ namespace WebShop.Models
     {
         public OrderProductList()
         {
-            this.OrderProductModels = new List<OrderProductModel>();
+            OrderProductModels = new List<OrderProductModel>();
         }
         public List<OrderProductModel> OrderProductModels { get; set; }
         public double Total
         {
-            get { return this.OrderProductModels.Sum(product => product.Total); }
+            get { return OrderProductModels.Sum(product => product.Total); }
         }
     }
 }

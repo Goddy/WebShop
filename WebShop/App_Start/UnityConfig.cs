@@ -6,7 +6,6 @@ using Microsoft.Owin.Security;
 using Microsoft.Practices.Unity;
 using Unity.Mvc5;
 using WebShop.Contexts;
-using WebShop.Controllers;
 using WebShop.Models;
 using WebShop.Repositories;
 using WebShop.Services;

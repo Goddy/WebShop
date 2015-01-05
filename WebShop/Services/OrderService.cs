@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Security;
-using Microsoft.Ajax.Utilities;
 using WebGrease.Css.Extensions;
 using WebShop.Models;
 using WebShop.Repositories;
@@ -31,7 +27,7 @@ namespace WebShop.Services
         public Order BuildAndSaveOrder(OrderProductList orderProductList, String userId)
         {
             //Make sure the user is fetched
-            ApplicationUser user = _uow.Context.Users.Find(userId);
+            var user = _uow.Context.Users.Find(userId);
             //Create the order
             var order = new Order {Account = user};
             orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(_uow.ProductRepository.Get(x.ProductId), x.Amount)));

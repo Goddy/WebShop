@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using WebShop.Contexts;
 using WebShop.Models;
 
@@ -16,32 +15,16 @@ namespace WebShop.Repositories
 
         public UnitOfWork(WebShopContext webShopContext)
         {
-            this._context = webShopContext;
+            _context = webShopContext;
         }
 
         public GenericRepository<Order> OrderRepository
         {
-            get
-            {
-
-                if (this._orderRepository == null)
-                {
-                    this._orderRepository = new GenericRepository<Order>(_context);
-                }
-                return _orderRepository;
-            }
+            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context)); }
         }
         public GenericRepository<Product> ProductRepository
         {
-            get
-            {
-
-                if (this._productRepository == null)
-                {
-                    this._productRepository = new GenericRepository<Product>(_context);
-                }
-                return _productRepository;
-            }
+            get { return _productRepository ?? (_productRepository = new GenericRepository<Product>(_context)); }
         }
 
         public WebShopContext Context
@@ -55,18 +38,18 @@ namespace WebShop.Repositories
             _context.SaveChanges();
         }
 
-        private bool disposed = false;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this.disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

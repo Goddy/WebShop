@@ -6,7 +6,7 @@ namespace WebShop.Models
     /// <summary>
     /// Summary description for Order
     /// </summary>
-    public class Order : AbstractEntity<int>
+    public sealed class Order : AbstractEntity<int>
     {
         public Order()
         {
@@ -15,9 +15,9 @@ namespace WebShop.Models
 
         public Status Status { get; set; }
     
-        public virtual ApplicationUser Account { get; set; }
+        public ApplicationUser Account { get; set; }
 
-        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
 
         public double GetTotalPrice()
         {
