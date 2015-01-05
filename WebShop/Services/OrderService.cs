@@ -4,6 +4,7 @@ using System.Linq;
 using WebGrease.Css.Extensions;
 using WebShop.Models;
 using WebShop.Repositories;
+using WebShop.ViewModel;
 
 namespace WebShop.Services
 {

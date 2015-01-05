@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebShop.Models;
 using WebShop.Services;
+using WebShop.ViewModel;
 
 namespace WebShop.Controllers
 {

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using WebShop.Models;
+using WebShop.ViewModel;
 
 namespace WebShop.Controllers
 {

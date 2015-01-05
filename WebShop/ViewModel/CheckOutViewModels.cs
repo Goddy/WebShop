@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WebShop.Models;
 
-namespace WebShop.Models
+namespace WebShop.ViewModel
 {
     public class OrderProductModel
     {

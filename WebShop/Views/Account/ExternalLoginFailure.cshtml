@@ -1,8 +1,9 @@
-﻿@{
-    ViewBag.Title = "Login Failure";
+﻿@using Resources
+@{
+    ViewBag.Title = Locale.LoginFailure;
 }
 
 <hgroup>
     <h2>@ViewBag.Title.</h2>
-    <h3 class="text-danger">Unsuccessful login with service.</h3>
+    <h3 class="text-danger">@Locale.LoginFailureText</h3>
 </hgroup>

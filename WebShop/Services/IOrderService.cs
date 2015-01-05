@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WebShop.Models;
+using WebShop.ViewModel;
 
 namespace WebShop.Services
 {
