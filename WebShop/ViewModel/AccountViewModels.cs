@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WebShop.App_GlobalResources;
 
 namespace WebShop.ViewModel
 {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
     }
 
@@ -29,11 +30,11 @@ namespace WebShop.ViewModel
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(ResourceType = typeof (Locale), Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(ResourceType = typeof (Locale), Name = "Remember_browser")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,65 +43,65 @@ namespace WebShop.ViewModel
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(ResourceType = typeof (Locale), Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(ResourceType = typeof (Locale), Name = "Remember_me")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Name")]
+        [Display(ResourceType = typeof (Locale), Name = "Name")]
         public string Name { get; set; }
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Locale), ErrorMessageResourceName = "ValidationLengthText", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(ResourceType = typeof (Locale), Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(ResourceType = typeof (Locale), Name = "Confirm_password")]
+        [Compare("Password", ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "Password_Match")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Street")]
+        [Display(ResourceType = typeof (Locale), Name = "Street")]
         [Required]
         public string Street { get; set; }
 
-        [Display(Name = "Number")]
+        [Display(ResourceType = typeof (Locale), Name = "Number")]
         [Required]
         public int Number { get; set; }
 
-        [Display(Name = "Postal Code")]
+        [Display(ResourceType = typeof (Locale), Name = "Postal_Code")]
         [Required]
         public int PostalCode { get; set; }
 
-        [Display(Name = "City")]
+        [Display(ResourceType = typeof (Locale), Name = "City")]
         [Required]
         public string City { get; set; }
 
-        [Display(Name = "Country")]
+        [Display(ResourceType = typeof (Locale), Name = "Country")]
         [Required]
         public string Country { get; set; }
     }
@@ -109,18 +110,18 @@ namespace WebShop.ViewModel
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "ValidationLengthText", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(ResourceType = typeof (Locale), Name = "LoginViewModel_Password_Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(ResourceType = typeof (Locale), Name = "Confirm_password")]
+        [Compare("Password", ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "Password_Match")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -130,7 +131,7 @@ namespace WebShop.ViewModel
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
     }
 }

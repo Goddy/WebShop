@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-
+﻿@using WebShop.App_GlobalResources
 <ul class="nav navbar-nav navbar-right">
 
     @if (Request.IsAuthenticated)
@@ -7,17 +6,17 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;@User.Identity.Name<b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Profile"})</li>
-                <li>@Html.ActionLink("My orders", "MyOrders", "Orders")</li>
-                <li>@Html.ActionLink("Log off", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Log off" })</li>
+                <li>@Html.ActionLink(@Locale.Profile, "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Profile"})</li>
+                <li>@Html.ActionLink(@Locale.My_Orders, "MyOrders", "Orders")</li>
+                <li>@Html.ActionLink(@Locale.Log_Out, "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Log off" })</li>
             </ul>
         </li>
         
     }
     else
     {
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
+        <li>@Html.ActionLink(@Locale.Register, "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
+        <li>@Html.ActionLink(@Locale.Log_In, "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
     }
 
     <li>

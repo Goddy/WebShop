@@ -1,19 +1,19 @@
-﻿@using Microsoft.Ajax.Utilities
+﻿@using WebShop.App_GlobalResources
 @model WebShop.Models.Product
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = Locale.Add_Product;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+<h2>@Locale.Add_Product</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>@Locale.Product</h4>
         <hr/>
 
         @Html.Partial("_ResultMessage")
@@ -54,12 +54,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="@Locale.Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Locale.Back_to_List, "Index")
 </div>

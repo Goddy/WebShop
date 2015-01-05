@@ -1,24 +1,25 @@
-﻿@model IEnumerable<WebShop.Models.Order>
+﻿@using WebShop.App_GlobalResources
+@model IEnumerable<WebShop.Models.Order>
 
 @{
-    ViewBag.Title = "MyOrders";
+    ViewBag.Title = Locale.My_Orders;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MyOrders</h2>
+<h2>@Locale.My_Orders</h2>
 
 @Html.Partial("_ResultMessage")
 
 @if (!Model.Any())
 {
-    <p>No Orders found.</p>
+    <p>@Locale.No_orders</p>
 }
 else {
     <table class="table">
         <tr>
-            <th>Id</th>
-            <th>Status</th>
-            <th>Products</th>
+            <th>@Locale.Id</th>
+            <th>@Locale.Status</th>
+            <th>@Locale.Products</th>
             <th></th>
         </tr>
 
@@ -40,7 +41,7 @@ else {
                     </ul>
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */})
+                    @Html.ActionLink(Locale.Details, "Details", new {/* id=item.PrimaryKey */})
                 </td>
             </tr>
         }

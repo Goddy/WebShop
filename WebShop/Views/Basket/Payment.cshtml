@@ -1,7 +1,8 @@
-﻿@using WebShop.Models
+﻿@using WebShop.App_GlobalResources
+@using WebShop.Models
 @model WebShop.ViewModel.OrderProductList
 @{
-    ViewBag.Title = "Payment";
+    ViewBag.Title = Locale.Payment_Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var addressModel = ViewBag.address as Address;
 }
@@ -14,13 +15,13 @@
             <table class="table table-responsive table-striped">
                 <tr>
                     <th>
-                        Product Name
+                        @Locale.Product_Name
                     </th>
                     <th>
                         #
                     </th>
                     <th>
-                        Subtotal
+                        @Locale.Subtotal
                     </th>
                 </tr>
                 @for (var i = 0; i < Model.OrderProductModels.Count(); ++i)
@@ -41,7 +42,7 @@
 
         </div>
         <div class="panel-footer">
-            <h3>Billing/Shipping information</h3>
+            <h3>@Locale.Billing_Info</h3>
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => addressModel.Street)
@@ -87,7 +88,7 @@
         </div>
 
         <div class="pull-right">
-            <input class="btn btn-danger" id="submit" value="Confirm payment" type="submit">
+            <input class="btn btn-danger" id="submit" value="@Locale.Confirm_Payment" type="submit">
         </div>
 
     </div>

@@ -1,14 +1,15 @@
-﻿@model IEnumerable<WebShop.Models.Product>
+﻿@using WebShop.App_GlobalResources
+@model IEnumerable<WebShop.Models.Product>
 
 @{
-    ViewBag.Title = "Overview";
+    ViewBag.Title = Locale.Overview;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+<h2>@Locale.Overview</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Add")
+    @Html.ActionLink(Locale.Create_New, "Add")
 </p>
 <table class="table">
     <tr>
@@ -42,9 +43,9 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink(Locale.Edit, "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink(Locale.Details, "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink(Locale.Delete, "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

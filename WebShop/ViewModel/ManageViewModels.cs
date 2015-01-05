@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using WebShop.App_GlobalResources;
 
 namespace WebShop.ViewModel
 {
@@ -28,14 +29,14 @@ namespace WebShop.ViewModel
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Locale), ErrorMessageResourceName = "ValidationLengthText", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(ResourceType = typeof (Locale), Name = "New_password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(ResourceType = typeof (Locale), Name = "Confirm_new_password")]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "Password_match_issue")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -43,18 +44,18 @@ namespace WebShop.ViewModel
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(ResourceType = typeof (Locale), Name = "Current_password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Locale), ErrorMessageResourceName = "ValidationLengthText", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(ResourceType = typeof (Locale), Name = "New_password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(ResourceType = typeof (Locale), Name = "Confirm_new_password")]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "Password_match_issue")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -62,19 +63,19 @@ namespace WebShop.ViewModel
     {
         [Required]
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(ResourceType = typeof (Locale), Name = "Phone_Number")]
         public string Number { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
     {
         [Required]
-        [Display(Name = "Code")]
+        [Display(ResourceType = typeof (Locale), Name = "Code")]
         public string Code { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(ResourceType = typeof (Locale), Name = "Phone_Number")]
         public string PhoneNumber { get; set; }
     }
 

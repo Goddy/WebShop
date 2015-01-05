@@ -1,7 +1,8 @@
-﻿@using WebShop.Models
-@model IEnumerable<WebShop.Models.Product>
+﻿@using WebShop.App_GlobalResources
+@using WebShop.Models
+@model IEnumerable<Product>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Locale.Index;
     var categories = ViewData["Categories"] as List<String>;
     var price = ViewData["Price"] as Dictionary<int, int>;
     var lastPrice = 0;
@@ -10,7 +11,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@Locale.Index</h2>
 <div class="row searchRow">
     <div class="col-md-4"></div>
     <div class="col-md-4"></div>
@@ -40,20 +41,20 @@
             {
                 <div style="clear: both;">
                     @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
-                    @Html.Label("Between " + p.Key + " and " + p.Value)
+                    @Html.Label(Locale.Between + " " + p.Key + " " + Locale.And + " " + p.Value)
                 </div>
                 lastPrice = p.Value;
             }
             <div style="clear: both;">
                 @Html.RadioButton("cat", lastPrice + ", " + lastPrice*100, searchClassPrice)
-                @Html.Label("Larger than " + lastPrice)
+                @Html.Label(Locale.LargerThan + " " + lastPrice)
             </div>
         </div>
     </div>
     <div class="col-xs-12 col-md-8">
         <div class="container">
             <div class="well well-sm">
-                <strong>Category Title</strong>
+                <strong>@Locale.CategoryTitle</strong>
                 <div class="btn-group">
                     <a href="#" id="list" class="btn btn-default btn-sm">
                         <span class="glyphicon glyphicon-th-list">
@@ -67,7 +68,7 @@
                 @Html.Partial("_SearchPartial")
             </div>
         </div>
-        <a href="2" id="more" class="btn btn-info">More results</a>
+        <a href="2" id="more" class="btn btn-info">@Locale.MoreResults</a>
     </div>
 </div>
 
@@ -76,14 +77,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">@Locale.ModalTitle</h4>
             </div>
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
-                <a href="/Basket/CheckOut" class="btn btn-primary">Go to cart</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Locale.ContinueShopping</button>
+                <a href="/Basket/CheckOut" class="btn btn-primary">@Locale.GoToCart</a>
 </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

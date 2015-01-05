@@ -1,15 +1,15 @@
-﻿@using WebShop.Models
+﻿@using WebShop.App_GlobalResources
 @model WebShop.ViewModel.OrderProductList
 @{
-    ViewBag.Title = "CheckOut";
+    ViewBag.Title = Locale.CheckOut_Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CheckOut</h2>
+<h2>@Locale.CheckOut_Title</h2>
 
 @if (!Model.OrderProductModels.Any())
 {
-    <p>Basket is empty.</p>
+    <p>@Locale.Empty_Basket.</p>
 }
 else
 {
@@ -23,13 +23,13 @@ else
                 <table class="table table-responsive table-striped">
                     <tr>
                         <th>
-                            Product Name
+                            @Locale.Product_Name
                         </th>
                         <th>
                             #
                         </th>
                         <th>
-                            Subtotal
+                            @Locale.Subtotal
                         </th>
                     </tr>
                     @for (var i = 0; i < Model.OrderProductModels.Count(); ++i)
@@ -62,7 +62,7 @@ else
 
             <div class="form-group">
                 <div class="pull-right">
-                    <input class="btn btn-danger" id="submit" value="Checkout" type="submit">
+                    <input class="btn btn-danger" id="submit" value="@Locale.CheckOut_Title" type="submit">
                 </div>
             </div>
         </div>

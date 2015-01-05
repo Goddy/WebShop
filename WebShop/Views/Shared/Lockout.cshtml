@@ -1,10 +1,11 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@using WebShop.App_GlobalResources
+@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Locked Out";
+    ViewBag.Title = Locale.Locked_Out;
 }
 
 <hgroup>
-    <h1 class="text-danger">Locked out.</h1>
-    <h2 class="text-danger">This account has been locked out, please try again later.</h2>
+    <h1 class="text-danger">@Locale.Locked_Out.</h1>
+    <h2 class="text-danger">@Locale.Locked_Out_Message</h2>
 </hgroup>

@@ -1,18 +1,19 @@
-﻿@model WebShop.Models.Product
+﻿@using WebShop.App_GlobalResources
+@model WebShop.Models.Product
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Locale.Edit_Product;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>@Locale.Edit_Product</h2>
 
 @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new {enctype = "multipart/form-data", @data_ajax = "false" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>@Locale.Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -48,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="productImage">File input</label>
+            <label class="control-label col-md-2" for="productImage">@Locale.File_input</label>
             <div class="col-md-10">
                 <input type="file" name="productImage" id="productImage"/>
                 <p class="help-block">Example block-level help text here.</p>
@@ -57,7 +58,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="@Locale.Save" class="btn btn-default" />
             </div>
         </div>
     </div>

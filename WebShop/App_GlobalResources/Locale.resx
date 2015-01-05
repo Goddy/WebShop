@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="AssociationForm" xml:space="preserve">
+    <value>Association Form</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="CategoryTitle" xml:space="preserve">
+    <value>Category Title</value>
+  </data>
+  <data name="ConfirmEmailClick" xml:space="preserve">
+    <value>Click here to Log in</value>
+  </data>
+  <data name="ConfirmEmailText" xml:space="preserve">
+    <value>Thank you for confirming your email. Please</value>
+  </data>
+  <data name="ContinueShopping" xml:space="preserve">
+    <value>Continue shopping</value>
+  </data>
+  <data name="GoToCart" xml:space="preserve">
+    <value>Go to cart</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="LargerThan" xml:space="preserve">
+    <value>Larger than</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Login Failure</value>
+  </data>
+  <data name="LoginFailureText" xml:space="preserve">
+    <value>Unsuccessful login with service.</value>
+  </data>
+  <data name="LoginRegister" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Use your account to log in.</value>
+  </data>
+  <data name="ModalTitle" xml:space="preserve">
+    <value>Modal title</value>
+  </data>
+  <data name="MoreResults" xml:space="preserve">
+    <value>More results</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="SuccessAuth" xml:space="preserve">
+    <value>You've successfully authenticated with</value>
+  </data>
+  <data name="SuccessAuth2" xml:space="preserve">
+    <value>Please enter a user name for this site below and click the Register button to finish logging in.</value>
+  </data>
+  <data name="LoginViewModel_Password_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Remember_browser" xml:space="preserve">
+    <value>Remember this browser?</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Remember_me" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ValidationLengthText" xml:space="preserve">
+    <value>The {0} must be at least {2} characters long.</value>
+  </data>
+  <data name="Confirm_password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Password_Match" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Postal_Code" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="New_password" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Confirm_new_password" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="Password_match_issue" xml:space="preserve">
+    <value>The new password and confirmation password do not match.</value>
+  </data>
+  <data name="Current_password" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="Phone_Number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Add_Phone_Number" xml:space="preserve">
+    <value>Add a phone number</value>
+  </data>
+  <data name="Add_Product" xml:space="preserve">
+    <value>Add product</value>
+  </data>
+  <data name="Add_to_cart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
+  <data name="Back_to_List" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="Billing_Info" xml:space="preserve">
+    <value>Billing/Shipping information</value>
+  </data>
+  <data name="Change_Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Change_Password_Form" xml:space="preserve">
+    <value>Change Password Form</value>
+  </data>
+  <data name="CheckOut_Title" xml:space="preserve">
+    <value>CheckOut</value>
+  </data>
+  <data name="Code_Send" xml:space="preserve">
+    <value>Send verification code</value>
+  </data>
+  <data name="Code_Title" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Confirm_Payment" xml:space="preserve">
+    <value>Confirm payment</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Create_account" xml:space="preserve">
+    <value>Create a new account.</value>
+  </data>
+  <data name="Create_Login" xml:space="preserve">
+    <value>Create Local Login</value>
+  </data>
+  <data name="Create_New" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="Create_Password" xml:space="preserve">
+    <value>Create Password</value>
+  </data>
+  <data name="Create_Password_Info" xml:space="preserve">
+    <value>You do not have a local username/password for this site. Add a local
+    account so you can log in without an external login.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit_Product" xml:space="preserve">
+    <value>Edit Product</value>
+  </data>
+  <data name="Email_link" xml:space="preserve">
+    <value>Email Link</value>
+  </data>
+  <data name="Empty_Basket" xml:space="preserve">
+    <value>Basket is empty.</value>
+  </data>
+  <data name="Enter_Code" xml:space="preserve">
+    <value>Enter verification code</value>
+  </data>
+  <data name="Enter_email" xml:space="preserve">
+    <value>Enter your email.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>We forgot to feed the unicorns</value>
+  </data>
+  <data name="File_input" xml:space="preserve">
+    <value>File input</value>
+  </data>
+  <data name="Forgot_Password" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="Forgot_Password_confirmation" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="Forgot_Password_confirmation_title" xml:space="preserve">
+    <value>Forgot Password Confirmation</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Locked_Out" xml:space="preserve">
+    <value>Locked out</value>
+  </data>
+  <data name="Locked_Out_Message" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
+  <data name="Log_In" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Log_Out" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Manage_Account" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Manage_Settings" xml:space="preserve">
+    <value>Change your account settings</value>
+  </data>
+  <data name="My_Orders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
+  <data name="No_orders" xml:space="preserve">
+    <value>No Orders found.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Payment_Title" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="Product_Name" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Reset_Confirmation_Body" xml:space="preserve">
+    <value>Your password has been reset. Please</value>
+  </data>
+  <data name="Reset_Confirmation_Title" xml:space="preserve">
+    <value>Reset password confirmation</value>
+  </data>
+  <data name="Reset_Password" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Set_Password" xml:space="preserve">
+    <value>Set password</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="Verify_Enter" xml:space="preserve">
+    <value>Enter verification code</value>
+  </data>
+  <data name="Verify_Phone_Number" xml:space="preserve">
+    <value>Verify Phone Number</value>
+  </data>
+  <data name="Verify_Title" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+</root>
