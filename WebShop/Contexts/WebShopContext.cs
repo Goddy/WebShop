@@ -13,5 +13,7 @@ namespace WebShop.Contexts
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Image> Images { get; set; }
+
+        public WebShopContext() : base("WebShopContext") { }
     }
 }

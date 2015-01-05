@@ -9,7 +9,7 @@ using WebShop.Contexts;
 
 namespace WebShop
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -18,8 +18,7 @@ namespace WebShop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UnityConfig.RegisterComponents();
-            //Reinitialize DB
-            //Database.SetInitializer<WebShopContext>(null);
+            Database.SetInitializer<WebShopContext>(null);
         }
 
         private void Application_BeginRequest(Object source, EventArgs e)

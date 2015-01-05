@@ -29,12 +29,12 @@ namespace WebShop
             container.RegisterType<IAccountService, AccountService>();
 
             //A bit of IoC txeaking with Identity (http://tech.trailmax.info/2014/09/aspnet-identity-and-ioc-container-registration/)
+            container.RegisterType<ApplicationUserManager>();
             container.RegisterType<ApplicationSignInManager>();
             container.RegisterType<WebShopContext>();
             container.RegisterType<UnitOfWork>();
             container.RegisterType<IAuthenticationManager>(new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
-            new InjectionConstructor(typeof(WebShopContext)));
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new InjectionConstructor(typeof(WebShopContext)));
         }
     }
 }
