@@ -136,7 +136,7 @@ namespace WebShop.Controllers
                 // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                 // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                return IsPaying() ? ReturnToOrders() : RedirectToAction("Index", "Home");
+                return IsPaying() ? ReturnToOrders() : RedirectToAction("Index", "Products");
             }
             AddErrors(result);
 
@@ -362,7 +362,7 @@ namespace WebShop.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Products");
         }
 
         //
@@ -428,7 +428,7 @@ namespace WebShop.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Products");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
