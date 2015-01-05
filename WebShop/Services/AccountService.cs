@@ -15,7 +15,7 @@ namespace WebShop.Services
 
         public ApplicationUser GetAccount(String id)
         {
-            return _uow.Context.Users.Find(id);
+            return _uow.UserRepository.Get(id);
         }
     }
 

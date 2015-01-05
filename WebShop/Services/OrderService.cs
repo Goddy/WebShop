@@ -25,10 +25,10 @@ namespace WebShop.Services
             return _uow.OrderRepository.GetAll().ToList();
         }
 
-        public Order BuildAndSaveOrder(OrderProductList orderProductList, String userId)
+        public Order BuildAndSaveOrder(OrderProductList orderProductList, ApplicationUser user)
         {
             //Make sure the user is fetched
-            var user = _uow.Context.Users.Find(userId);
+            //var user = _uow.UserRepository.Get(userId);
             //Create the order
             var order = new Order {Account = user};
             orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(_uow.ProductRepository.Get(x.ProductId), x.Amount)));

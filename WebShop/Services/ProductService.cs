@@ -27,12 +27,12 @@ namespace WebShop.Services
 
         public List<string> GetAllCategories()
         {
-            return _uow.Context.Products.Select(p => p.Category).Distinct().ToList();
+            return _uow.DbContext.Products.Select(p => p.Category).Distinct().ToList();
         }
 
         public Task<Product> SaveProduct(Product product, Image image)
         {
-            var img = _uow.Context.Images.Add(image);
+            var img = _uow.DbContext.Images.Add(image);
             product.Image = img;
             return _uow.ProductRepository.AddAsync(product);
         }

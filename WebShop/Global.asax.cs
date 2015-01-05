@@ -18,7 +18,6 @@ namespace WebShop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UnityConfig.RegisterComponents();
-            Database.SetInitializer<WebShopContext>(null);
         }
 
         private void Application_BeginRequest(Object source, EventArgs e)

@@ -60,7 +60,7 @@ namespace WebShop.Controllers
         public ActionResult Payment(OrderProductList list)
         {
             var orderProductList = Session["order"] as OrderProductList;
-            _orderService.BuildAndSaveOrder(orderProductList, User.Identity.GetUserId());
+            _orderService.BuildAndSaveOrder(orderProductList, GetUser());
             AddStatusMessage("Order successfully processed.");
             Session["order"] = null;
             return RedirectToAction("MyOrders","Orders");

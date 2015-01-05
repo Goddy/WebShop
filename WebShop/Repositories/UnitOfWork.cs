@@ -9,27 +9,28 @@ namespace WebShop.Repositories
     /// </summary>
     public class UnitOfWork : IDisposable
     {
-        private readonly WebShopContext _context;
+        private WebShopContext _context;
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<Product> _productRepository;
-
-        public UnitOfWork(WebShopContext webShopContext)
-        {
-            _context = webShopContext;
-        }
+        private GenericRepository<ApplicationUser> _userRepository;
 
         public GenericRepository<Order> OrderRepository
         {
-            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context)); }
+            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(DbContext)); }
         }
         public GenericRepository<Product> ProductRepository
         {
-            get { return _productRepository ?? (_productRepository = new GenericRepository<Product>(_context)); }
+            get { return _productRepository ?? (_productRepository = new GenericRepository<Product>(DbContext)); }
         }
 
-        public WebShopContext Context
+        public GenericRepository<ApplicationUser> UserRepository
         {
-            get { return _context; }
+            get { return _userRepository ?? (_userRepository = new GenericRepository<ApplicationUser>(DbContext)); }
+        }
+
+        public WebShopContext DbContext
+        {
+            get { return _context ?? (_context = new WebShopContext()); }
         }
 
 
@@ -38,18 +39,13 @@ namespace WebShop.Repositories
             _context.SaveChanges();
         }
 
-        private bool _disposed;
-
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (disposing && _context != null)
             {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
+                _context.Dispose();
+                _context = null;
             }
-            _disposed = true;
         }
 
         public void Dispose()

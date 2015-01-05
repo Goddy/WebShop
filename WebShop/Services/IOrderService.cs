@@ -11,7 +11,7 @@ namespace WebShop.Services
     public interface IOrderService
     {
         List<Order> GetAllOrders();
-        Order BuildAndSaveOrder(OrderProductList orderProductList, String userId);
+        Order BuildAndSaveOrder(OrderProductList orderProductList, ApplicationUser user);
         OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
         OrderProductList RepopulateProductOrderList(OrderProductList list);
     }
