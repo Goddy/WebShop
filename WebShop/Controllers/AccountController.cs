@@ -58,6 +58,7 @@ namespace WebShop.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 case SignInStatus.Failure:
+                    return View("Error");
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
@@ -101,6 +102,7 @@ namespace WebShop.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
+                    return View("Error");
                 default:
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
@@ -310,6 +312,7 @@ namespace WebShop.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
+                    return View("Error");
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
