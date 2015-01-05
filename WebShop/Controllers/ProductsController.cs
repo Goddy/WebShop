@@ -41,12 +41,10 @@ namespace WebShop.Controllers
         // GET: Products
         public ActionResult Edit(int? id)
         {
-            if (id != null)
-            {
-                var product = _productService.GetProduct(id.GetValueOrDefault());
-                return product == null ? (ActionResult) HttpNotFound() : View(product);
-            }
-            return View("Error");
+            if (id == null) 
+                return View("Error");
+            var product = _productService.GetProduct(id.GetValueOrDefault());
+            return product == null ? (ActionResult) HttpNotFound() : View(product);
         }
 
         [HttpPost]
@@ -54,18 +52,13 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add([Bind(Include = "Name,Description,Category,Price")] Product product)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await _productService.AddProduct(product);
-                if (result != null)
-                {
-                    AddStatusMessage("Product " + result.Name + " was successfully added.");
-                    return View(new Product());
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(product);
+            if (!ModelState.IsValid) 
+                return View(product);
+            var result = await _productService.AddProduct(product);
+            if (result == null)
+                return View(product);
+            AddStatusMessage("Product " + result.Name + " was successfully added.");
+            return View(new Product());
         }
 
         [HttpPost]

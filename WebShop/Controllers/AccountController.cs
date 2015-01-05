@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using WebShop.App_GlobalResources;
 using WebShop.Models;
 using WebShop.ViewModel;
 
@@ -61,7 +62,7 @@ namespace WebShop.Controllers
                 case SignInStatus.Failure:
                     return View("Error");
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", Locale.Invalid_login_attempt);
                     return View(model);
             }
         }

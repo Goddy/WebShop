@@ -411,4 +411,7 @@
   <data name="Verify_Title" xml:space="preserve">
     <value>Verify</value>
   </data>
+  <data name="Invalid_login_attempt" xml:space="preserve">
+    <value>Invalid login attempt.</value>
+  </data>
 </root>

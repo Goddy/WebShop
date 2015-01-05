@@ -503,6 +503,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid login attempt..
+        /// </summary>
+        public static string Invalid_login_attempt {
+            get {
+                return ResourceManager.GetString("Invalid_login_attempt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Larger than.
         /// </summary>
         public static string LargerThan {
