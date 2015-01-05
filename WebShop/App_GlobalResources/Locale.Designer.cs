@@ -142,7 +142,7 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category Title.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CategoryTitle {
             get {
@@ -323,7 +323,7 @@ namespace WebShop.App_GlobalResources {
         
         /// <summary>
         ///   Looks up a localized string similar to You do not have a local username/password for this site. Add a local
-        ///    account so you can log in without an external login..
+        ///    account so you can log in..
         /// </summary>
         public static string Create_Password_Info {
             get {
@@ -908,7 +908,7 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long..
+        ///   Looks up a localized string similar to The {0} must be at least {1} characters long..
         /// </summary>
         public static string ValidationLengthText {
             get {
