@@ -1,21 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+using System.Collections.Generic;
 using System.Web.Security;
-using WebShop.Contexts;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebShop.Models;
 
-namespace WebShop.DAL
+namespace WebShop.Migrations
 {
-    public class ContextInitializer : DropCreateDatabaseAlways<WebShopContext>
-    {
-        private readonly ApplicationUserManager _applicationUserManager;
+    using System.Data.Entity.Migrations;
 
-        public ContextInitializer(ApplicationUserManager applicationUserManager)
+    internal sealed class Configuration : DbMigrationsConfiguration<Contexts.WebShopContext>
+    {
+        public Configuration()
         {
-            _applicationUserManager = applicationUserManager;
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "WebShop.Contexts.WebShopContext";
         }
-        protected override async void Seed(WebShopContext context)
+
+        protected override void Seed(Contexts.WebShopContext context)
         {
+            var applicationUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context), context);
             var users = new List<ApplicationUser>
             {
                 new ApplicationUser
@@ -79,11 +82,14 @@ namespace WebShop.DAL
                     }
                 }
             };
-            Roles.AddUserToRole("admin@admin.be", "admin");
+            if (!Roles.RoleExists("admin"))
+            {
+                Roles.CreateRole("admin");
+                Roles.AddUserToRole("admin@admin.be", "admin");
+            }
             foreach (var applicationUser in users)
             {
-                await _applicationUserManager.CreateAsync(applicationUser, "Password1!");
-                context.Users.Add(applicationUser);
+                applicationUserManager.Create(applicationUser, "Password1!");
             }
             context.SaveChanges();
         }

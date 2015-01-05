@@ -197,11 +197,14 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="DAL\ContextInitializer.cs" />
-    <Compile Include="DAL\ForceDeleteInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501051911533_InitialCreate.cs" />
+    <Compile Include="Migrations\201501051911533_InitialCreate.Designer.cs">
+      <DependentUpon>201501051911533_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractEntity.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -313,6 +316,9 @@
     <EmbeddedResource Include="App_GlobalResources\Locale.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Locale.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501051911533_InitialCreate.resx">
+      <DependentUpon>201501051911533_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
