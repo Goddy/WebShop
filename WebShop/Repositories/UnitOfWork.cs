@@ -13,6 +13,7 @@ namespace WebShop.Repositories
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<Product> _productRepository;
         private GenericRepository<ApplicationUser> _userRepository;
+        private GenericRepository<Image> _imageRepository;
 
         public GenericRepository<Order> OrderRepository
         {
@@ -26,6 +27,11 @@ namespace WebShop.Repositories
         public GenericRepository<ApplicationUser> UserRepository
         {
             get { return _userRepository ?? (_userRepository = new GenericRepository<ApplicationUser>(DbContext)); }
+        }
+        
+        public GenericRepository<Image> ImageRepository
+        {
+            get { return _imageRepository ?? (_imageRepository = new GenericRepository<Image>(DbContext)); }
         }
 
         public WebShopContext DbContext
@@ -41,11 +47,10 @@ namespace WebShop.Repositories
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && _context != null)
-            {
-                _context.Dispose();
-                _context = null;
-            }
+            if (!disposing || _context == null) 
+                return;
+            _context.Dispose();
+            _context = null;
         }
 
         public void Dispose()

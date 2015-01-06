@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -34,10 +33,12 @@ namespace WebShop.Services
         public async Task<Product> SaveProduct(Product product, Image image)
         {
             image.ProductId = product.Id;
-            if (_uow.DbContext.Images.Any(x => x.ProductId.Equals(product.Id)))
-                _uow.DbContext.Images.AddOrUpdate(image);
+            var existing = _uow.ImageRepository.Find(x => x.ProductId.Equals(product.Id));
+            if (existing != null)
+                existing = await _uow.ImageRepository.UpdateAsync(existing, image);
             else
-                product.Image = _uow.DbContext.Images.Add(image);
+                existing = await _uow.ImageRepository.AddAsync(image);
+            product.Image = existing;
             return await _uow.ProductRepository.UpdateAsync(product, product.Id);
         }
 

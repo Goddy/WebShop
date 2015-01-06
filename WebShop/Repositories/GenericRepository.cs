@@ -92,9 +92,18 @@ namespace WebShop.Repositories
         {
             if (updated == null)
                 return null;
- 
             var existing = await Context.Set<TEntity>().FindAsync(key);
             if (existing == null) 
+                return null;
+            Context.Entry(existing).CurrentValues.SetValues(updated);
+            await Context.SaveChangesAsync();
+            return existing;
+        }
+
+
+        public async Task<TEntity> UpdateAsync(TEntity existing, TEntity updated)
+        {
+            if (updated == null || existing == null)
                 return null;
             Context.Entry(existing).CurrentValues.SetValues(updated);
             await Context.SaveChangesAsync();
