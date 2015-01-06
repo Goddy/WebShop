@@ -302,6 +302,7 @@
     <Content Include="Views\Shared\_ResultMessage.cshtml" />
     <Content Include="Views\Products\Overview.cshtml" />
     <Content Include="Views\Basket\Payment.cshtml" />
+    <Content Include="Views\Products\_ProductPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

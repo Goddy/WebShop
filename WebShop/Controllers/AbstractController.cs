@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Security.Cryptography;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebShop.Models;
 using WebShop.Services;
@@ -27,6 +28,11 @@ namespace WebShop.Controllers
         protected void AddStatusMessage(string statusMessage)
         {
             TempData["StatusMessage"] = statusMessage;
+        }
+
+        protected void AddData(string name, string value)
+        {
+            TempData[name] = value;
         }
     }
 }

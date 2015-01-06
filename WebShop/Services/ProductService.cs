@@ -47,6 +47,13 @@ namespace WebShop.Services
             return _uow.ProductRepository.AddAsync(product);
         }
 
+        public async Task<Product> AddProduct(Product product, Image image)
+        {
+            image.Product = product;
+            var img = await _uow.ImageRepository.AddAsync(image);
+            return (img == null) ? null : product;
+        }
+
         public Product GetProduct(int id)
         {
             return _uow.ProductRepository.Get(id);

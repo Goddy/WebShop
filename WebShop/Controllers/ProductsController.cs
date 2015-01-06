@@ -8,6 +8,7 @@ using PagedList;
 using WebShop.App_GlobalResources;
 using WebShop.Models;
 using WebShop.Services;
+using Image = WebShop.Models.Image;
 
 namespace WebShop.Controllers
 {
@@ -33,6 +34,7 @@ namespace WebShop.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
+            AddData("action", "add");
             return View();
         }
 
@@ -49,6 +51,7 @@ namespace WebShop.Controllers
         {
             if (id == null) 
                 return View("Error");
+            AddData("action", "edit");
             var product = _productService.GetProduct(id.GetValueOrDefault());
             return product == null ? (ActionResult) HttpNotFound() : View(product);
         }
@@ -56,15 +59,28 @@ namespace WebShop.Controllers
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Add([Bind(Include = "Name,Description,Category,Price")] Product product)
+        public async Task<ActionResult> Add([Bind(Include = "Name,Description,Category,Price")] Product product, HttpPostedFileBase productImage)
         {
-            if (!ModelState.IsValid) 
+            AddData("action", "add");
+            if (!ModelState.IsValid)
                 return View(product);
-            var result = await _productService.AddProduct(product);
+            Product result;
+            if (productImage != null)
+            {
+                var response = HandleImage(productImage, View());
+                if (response.Item2 != null)
+                    return response.Item2;
+                result = await _productService.AddProduct(product, response.Item1);
+            }
+            else
+            {
+                result = await _productService.AddProduct(product);
+            }
+
             if (result == null)
                 return View(product);
-            AddStatusMessage("Product " + result.Name + " was successfully added.");
-            return View(new Product());
+            AddStatusMessage("Successfully added " + result.Name);
+            return View();
         }
 
         [HttpPost]
@@ -72,38 +88,19 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {
+            AddData("action", "edit");
             if (productImage != null && productImage.ContentLength > 0)
             {
-                var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                var extension = System.IO.Path.GetExtension(productImage.FileName);
-                if (extension != null)
-                {
-                    var fileExt = extension.Substring(1);
-
-                    if (!supportedTypes.Contains(fileExt))
-                    {
-                        ModelState.AddModelError("photo", Locale.Unsupported_Image);
-                        return View();
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("photo", Locale.Unsupported_Image);
-                    return View();   
-                }
-                var fileName = Guid.NewGuid() + extension;
-                var uploadPath = Server.MapPath("~/Images/Custom/") + fileName;
-                productImage.SaveAs(uploadPath);
-                var image = new Image("~/Images/Custom/" + fileName, null);
-                await _productService.SaveProduct(product, image);
+                var response = HandleImage(productImage, View());
+                if (response.Item2 != null)
+                    return response.Item2;
+                await _productService.SaveProduct(product, response.Item1);
             }
             else
             {
                 await _productService.SaveProduct(product);
             }
-
-            AddStatusMessage("Product updated.");
-            
+            AddStatusMessage(product.Name + " was successfully updated.");
             return View();
         }
 
@@ -133,6 +130,31 @@ namespace WebShop.Controllers
                 { 100, 500 },
                 { 500, 1000 }
             };
+        }
+
+        private Tuple<Image, ViewResult> HandleImage(HttpPostedFileBase productImage, ViewResult view)
+        {
+            var supportedTypes = new[] { "jpg", "jpeg", "png" };
+            var extension = System.IO.Path.GetExtension(productImage.FileName);
+            if (extension != null)
+            {
+                var fileExt = extension.Substring(1);
+
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                    return new Tuple<Image, ViewResult>(null, view);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                return new Tuple<Image, ViewResult>(null, view);  
+            }
+            var fileName = Guid.NewGuid() + extension;
+            var uploadPath = Server.MapPath("~/Images/Custom/") + fileName;
+            productImage.SaveAs(uploadPath);
+            return new Tuple<Image, ViewResult>(new Image("~/Images/Custom/" + fileName, null), null);
         }
     }
 }
