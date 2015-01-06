@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -19,6 +20,8 @@ namespace WebShop.Migrations
 
         protected override void Seed(Contexts.WebShopContext context)
         {
+            context.Database.Delete();
+            context.Database.Create();
             var applicationUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context), context);
             Debug.WriteLine("Adding users");
             var users = new List<ApplicationUser>
@@ -102,7 +105,21 @@ namespace WebShop.Migrations
                 new Product{Category = "Frame", Description = "The next generation of Ground Control frames have arrived, introducing The BIGs.  A collaborative effort with team riders and our design staff, the BIGs are built to offer GC’s trusted street attributes blended with smooth roll of a recreational frame setup.  By increasing the height of the frame, increasing the width of the h-block, and lowering the side walls and outer edges of the center groove, we are now able to offer a frame that allows a maximum wheel size of 72mm that skates like a street frame.  Complete with aluminum spacers, your wheels will roll smooth and fast with minimal resistance.", Name = "GROUNDCONTROL BIG Frame Khaki", Price = 59.99},
                 new Product{Category = "Frame", Description = "The Kizer Fluid is Kizer's longest running frame. Its continuous success is credited to its simple design, solid yet lightweight construction and its speed and consistency on the grind.", Name = "KIZER Fluid 4 Franky Clear Frame", Price = 69.99},
             };
-            context.Products.AddRange(products);
+            var images = new List<Image>
+            {
+                new Image("~/Images/Custom/bailey.jpg", null),
+                new Image("~/Images/Custom/eisler.jpg", null),
+                new Image("~/Images/Custom/franky.jpg", null),
+                new Image("~/Images/Custom/franky_clear.jpg", null),
+                new Image("~/Images/Custom/gc_white.jpg", null)
+            };
+            products = context.Products.AddRange(products).ToList();
+            for (var i = 0; i < images.Count; i++)
+            {
+                images[i].ProductId = products[i].Id;
+                products[i].Image = images[i];
+            }
+            context.Images.AddRange(images);
             context.SaveChanges();
         }
     }
