@@ -93,12 +93,11 @@ namespace WebShop.Repositories
             if (updated == null)
                 return null;
  
-            TEntity existing = await Context.Set<TEntity>().FindAsync(key);
-            if (existing != null)
-            {
-                Context.Entry(existing).CurrentValues.SetValues(updated);
-                await Context.SaveChangesAsync();
-            }
+            var existing = await Context.Set<TEntity>().FindAsync(key);
+            if (existing == null) 
+                return null;
+            Context.Entry(existing).CurrentValues.SetValues(updated);
+            await Context.SaveChangesAsync();
             return existing;
         }
  

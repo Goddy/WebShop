@@ -30,11 +30,12 @@ namespace WebShop.Services
             return _uow.DbContext.Products.Select(p => p.Category).Distinct().ToList();
         }
 
-        public Task<Product> SaveProduct(Product product, Image image)
+        public async Task<Product> SaveProduct(Product product, Image image)
         {
+            image.ProductId = product.Id;
             var img = _uow.DbContext.Images.Add(image);
             product.Image = img;
-            return _uow.ProductRepository.AddAsync(product);
+            return await _uow.ProductRepository.UpdateAsync(product, product.Id);
         }
 
         public Task<Product> AddProduct(Product product)

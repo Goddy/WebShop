@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using WebShop.App_GlobalResources;
 using WebShop.Models;
 using WebShop.Services;
 
@@ -73,10 +75,26 @@ namespace WebShop.Controllers
             //Todo: Image is not saved + extension not specified
             if (productImage != null && productImage.ContentLength > 0)
             {
-                var uploadPath = Server.MapPath("~/Images/Custom/") + Guid.NewGuid();
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var extension = System.IO.Path.GetExtension(productImage.FileName);
+                if (extension != null)
+                {
+                    var fileExt = extension.Substring(1);
+
+                    if (!supportedTypes.Contains(fileExt))
+                    {
+                        ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                        return View();
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                    return View();   
+                }
+                var uploadPath = Server.MapPath("~/Images/Custom/") + Guid.NewGuid() + extension;
                 productImage.SaveAs(uploadPath);
                 var image = new Image(uploadPath, null);
-                product.Image = image;
                 await _productService.SaveProduct(product, image);
             }
             else
