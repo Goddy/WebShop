@@ -1,4 +1,5 @@
-﻿@using WebShop.App_GlobalResources
+﻿@using Microsoft.Ajax.Utilities
+@using WebShop.App_GlobalResources
 @model IEnumerable<WebShop.Models.Product>
 @* 
     Partial view for  product search results, returns nothing if no results are found.
@@ -10,7 +11,7 @@
         {
             <div class="item  col-xs-4 col-lg-4">
                 <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt=""/>
+                    <img class="group list-group-image" src="@((item.Image != null)? Url.Content(@item.Image.Location): "http://placehold.it/400x250/000/fff)")" onerror="this.onerror = null; this.src = 'http://placehold.it/400x250/000/fff';" alt="@item.Name" />
                     <div class="caption">
                         <h4 class="group inner list-group-item-heading">
                             @Html.DisplayFor(modelItem => item.Name)

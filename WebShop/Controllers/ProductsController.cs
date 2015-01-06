@@ -91,9 +91,10 @@ namespace WebShop.Controllers
                     ModelState.AddModelError("photo", Locale.Unsupported_Image);
                     return View();   
                 }
-                var uploadPath = Server.MapPath("~/Images/Custom/") + Guid.NewGuid() + extension;
+                var fileName = Guid.NewGuid() + extension;
+                var uploadPath = Server.MapPath("~/Images/Custom/") + fileName;
                 productImage.SaveAs(uploadPath);
-                var image = new Image(uploadPath, null);
+                var image = new Image("~/Images/Custom/" + fileName, null);
                 await _productService.SaveProduct(product, image);
             }
             else
