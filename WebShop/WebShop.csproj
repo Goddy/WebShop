@@ -303,6 +303,9 @@
     <Content Include="Views\Products\Overview.cshtml" />
     <Content Include="Views\Basket\Payment.cshtml" />
     <Content Include="Views\Products\_ProductPartial.cshtml" />
+    <Content Include="Views\Products\Detail.cshtml">
+      <BrowseToURL>~/Products/Detail</BrowseToURL>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

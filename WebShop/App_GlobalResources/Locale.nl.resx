@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -410,5 +409,14 @@
   </data>
   <data name="Verify_Title" xml:space="preserve">
     <value>Verifieer</value>
+  </data>
+  <data name="Invalid_login_attempt" xml:space="preserve">
+    <value>Ongeldige login poging</value>
+  </data>
+  <data name="Unsupported_Image" xml:space="preserve">
+    <value>Ongeldig type. Enkel jpg, png en jpeg zijn ondersteund.</value>
+  </data>
+  <data name="Detail_Page_Title" xml:space="preserve">
+    <value>Product detail</value>
   </data>
 </root>

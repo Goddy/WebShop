@@ -350,6 +350,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product detail.
+        /// </summary>
+        public static string Detail_Page_Title {
+            get {
+                return ResourceManager.GetString("Detail_Page_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {

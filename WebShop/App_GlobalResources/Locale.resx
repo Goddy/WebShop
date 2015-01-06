@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -417,5 +416,8 @@
   </data>
   <data name="Unsupported_Image" xml:space="preserve">
     <value>Invalid type. Only the following types (jpg, jpeg, png) are supported.</value>
+  </data>
+  <data name="Detail_Page_Title" xml:space="preserve">
+    <value>Product detail</value>
   </data>
 </root>
