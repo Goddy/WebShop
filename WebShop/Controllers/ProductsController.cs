@@ -54,6 +54,17 @@ namespace WebShop.Controllers
             var product = _productService.GetProduct(id.GetValueOrDefault());
             return product == null ? (ActionResult)HttpNotFound() : View(product);
         }
+        
+        // GET: Products
+        [Authorize(Roles = "admin")]
+        public async Task<ViewResult> Delete(int? id)
+        {
+            if (id == null)
+                return View("Error");
+            var product = await _productService.DeleteProduct((int)id);
+            AddStatusMessage((product != null)? "Successfully removed " + product.Name : "Unable to remove product");
+            return View("Overview", _productService.GetAllProducts());
+        }
 
         // GET: Products
         [Authorize(Roles = "admin")]

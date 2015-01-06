@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using WebShop.Models;
 using WebShop.Repositories;
@@ -52,6 +53,15 @@ namespace WebShop.Services
             image.Product = product;
             var img = await _uow.ImageRepository.AddAsync(image);
             return (img == null) ? null : product;
+        }
+
+        public async Task<Product> DeleteProduct(int id)
+        {
+            var product = GetProduct(id);
+            if (product.Image != null)
+                await _uow.ImageRepository.DeleteAsync(_uow.ImageRepository.Find(x=>x.ProductId.Equals(product.Id)));
+            await _uow.ProductRepository.DeleteAsync(product);
+            return product;
         }
 
         public Product GetProduct(int id)

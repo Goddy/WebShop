@@ -16,6 +16,7 @@ namespace WebShop.Services
         Task<Product> SaveProduct(Product product, Image image);
         Task<Product> AddProduct(Product product);
         Task<Product> AddProduct(Product product, Image image);
+        Task<Product> DeleteProduct(int id);
         Product GetProduct(int id);
         List<Product> SearchProducts(List<string> catList, int? minPrice, int? maxPrice, string searchString);
     }
