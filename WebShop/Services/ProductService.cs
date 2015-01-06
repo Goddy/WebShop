@@ -27,7 +27,7 @@ namespace WebShop.Services
 
         public List<string> GetAllCategories()
         {
-            return _uow.DbContext.Products.Select(p => p.Category).Distinct().ToList();
+            return _uow.ProductRepository.GetAll().Select(p => p.Category).Distinct().ToList();
         }
 
         public async Task<Product> SaveProduct(Product product, Image image)

@@ -17,26 +17,26 @@ namespace WebShop.Repositories
 
         public GenericRepository<Order> OrderRepository
         {
-            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(DbContext)); }
+            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context)); }
         }
         public GenericRepository<Product> ProductRepository
         {
-            get { return _productRepository ?? (_productRepository = new GenericRepository<Product>(DbContext)); }
+            get { return _productRepository ?? (_productRepository = new GenericRepository<Product>(_context)); }
         }
 
         public GenericRepository<ApplicationUser> UserRepository
         {
-            get { return _userRepository ?? (_userRepository = new GenericRepository<ApplicationUser>(DbContext)); }
+            get { return _userRepository ?? (_userRepository = new GenericRepository<ApplicationUser>(_context)); }
         }
         
         public GenericRepository<Image> ImageRepository
         {
-            get { return _imageRepository ?? (_imageRepository = new GenericRepository<Image>(DbContext)); }
+            get { return _imageRepository ?? (_imageRepository = new GenericRepository<Image>(_context)); }
         }
 
-        public WebShopContext DbContext
+        public UnitOfWork()
         {
-            get { return _context ?? (_context = new WebShopContext()); }
+            _context = new WebShopContext();
         }
 
 
