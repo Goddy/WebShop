@@ -72,7 +72,6 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {
-            //Todo: Image is not saved + extension not specified
             if (productImage != null && productImage.ContentLength > 0)
             {
                 var supportedTypes = new[] { "jpg", "jpeg", "png" };
