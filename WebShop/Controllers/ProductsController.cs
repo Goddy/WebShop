@@ -19,6 +19,7 @@ namespace WebShop.Controllers
             _productService = productService;
         }
         // GET: Products
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewData["Categories"] = _productService.GetAllCategories();
@@ -27,18 +28,21 @@ namespace WebShop.Controllers
         }
 
         // GET: Products
+        [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
             return View();
         }
 
         // GET: Products
+        [Authorize(Roles = "admin")]
         public ActionResult Overview()
         {
             return View(_productService.GetAllProducts());
         }
 
         // GET: Products
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null) 
@@ -48,7 +52,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add([Bind(Include = "Name,Description,Category,Price")] Product product)
         {
@@ -62,6 +66,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {
