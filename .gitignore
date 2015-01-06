@@ -18,6 +18,7 @@ bld/
 
 # ignore images
 WebShop/Images
+!WebShop/Images/Custom/placeholder.png
 
 # Roslyn cache directories
 *.ide/
