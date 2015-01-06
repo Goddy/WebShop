@@ -917,6 +917,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid type. Only the following types (jpg, jpeg, png) are supported..
+        /// </summary>
+        public static string Unsupported_Image {
+            get {
+                return ResourceManager.GetString("Unsupported_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} must be at least {1} characters long..
         /// </summary>
         public static string ValidationLengthText {

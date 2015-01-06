@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -414,5 +414,8 @@
   </data>
   <data name="Invalid_login_attempt" xml:space="preserve">
     <value>Invalid login attempt.</value>
+  </data>
+  <data name="Unsupported_Image" xml:space="preserve">
+    <value>Invalid type. Only the following types (jpg, jpeg, png) are supported.</value>
   </data>
 </root>
