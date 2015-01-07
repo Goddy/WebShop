@@ -14,3 +14,17 @@
     </div>
 </div>
 
+@Html.Partial("_BasketModal")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/webshop")
+    <script type="text/javascript">
+        (function($, basketUtils) {
+            $(".add-to-cart").click(function(e) {
+                e.preventDefault();
+                basketUtils.addToBasket($(this));
+            });
+        })(jQuery, webShop.basketUtils)
+    </script>
+}
+

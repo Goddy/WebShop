@@ -22,6 +22,15 @@ body{
     border-color: #0000FF;
 }
 
+span.filter {
+    padding: 5px;
+}
+
+.thumbnail > img {
+    max-height: 250px;
+    max-width: 400px;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

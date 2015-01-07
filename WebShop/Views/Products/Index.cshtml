@@ -25,71 +25,74 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <h4>@Locale.CategoryTitle</h4>
-        <div class="well well-lg">
-            @foreach (var cat in categories)
-            {
-                <div style="clear: both;">
-                    @Html.CheckBox(cat, false, searchClassCat)
-                    @Html.Label(cat)
-                </div>
-            }
-        </div>
-        <h4>@Locale.Price</h4>
-        <div class="well well-lg">
-            @foreach (var p in price)
-            {
-                <div style="clear: both;">
-                    @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
-                    @Html.Label(Locale.Between + " " + p.Key + " " + Locale.And + " " + p.Value)
-                </div>
-                lastPrice = p.Value;
-            }
-            <div style="clear: both;">
-                @Html.RadioButton("cat", lastPrice + ", " + lastPrice*100, searchClassPrice)
-                @Html.Label(Locale.LargerThan + " " + lastPrice)
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-8">
-        <div class="container">
-            <div class="well well-sm">
-                <strong>@Locale.Products</strong>
-            </div>
+    <div>
+            <ul class="nav nav-pills">
+                    <li><a href="#"><strong>@Locale.Filter_by</strong></a></li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                        @Locale.Price <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach (var p in price)
+                        {
+                            <li role="presentation">
+                                <span class="filter">
+                                        @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
+                                        @Html.Label(Locale.Between + " " + p.Key + " " + Locale.And + " " + p.Value)
+                                    </span>
+                            </li>
+                            lastPrice = p.Value;
+                        }
+                        <li role="presentation">
+                            <span class="filter">
+                                    @Html.RadioButton("cat", lastPrice + ", " + lastPrice*100, searchClassPrice)
+                                    @Html.Label(Locale.LargerThan + " " + lastPrice)
+                                </span>
+                        </li>
+                    </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                        @Locale.CategoryTitle <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach (var cat in categories)
+                        {
+                            <li role="presentation">
+                                <span class="filter">
+                                    @Html.CheckBox(cat, false, searchClassCat)
+                                    @Html.Label(cat)
+                                </span>
+                            </li>
+                        }
+                      
+                    </ul>
+                </li>
+
+            </ul>
+           
             <div id="result">
                 @Html.Partial("_SearchPartial")
             </div>
         </div>
         <a href="2" id="more" class="btn btn-info">@Locale.MoreResults</a>
     </div>
-</div>
 
-<div class="modal fade" id="addToBasketModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">@Locale.ModalTitle</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@Locale.ContinueShopping</button>
-                <a href="@Url.Action("CheckOut", "Basket")" class="btn btn-primary">@Locale.GoToCart</a>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+@Html.Partial("_BasketModal")
 
 @section Scripts {
     @Scripts.Render("~/bundles/webshop")
+
     <script type="text/javascript">
         (function ($, searchProd, basketUtils) {
             function defaultSearch() {
                 searchProd.search(1, true);
             }
+
+            //Make sure dropdown does not go away when clicking
+            $(".dropdown-menu input, .dropdown-menu label").click(function (e) {
+                e.stopPropagation();
+            });
 
             //For all searches, use a change event.
             $(".search").change(function() {

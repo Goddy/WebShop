@@ -9,7 +9,7 @@
     <div id="products" class="row list-group">
         @foreach (var item in Model)
         {
-            <div class="item  col-xs-4 col-lg-4">
+            <div class="item  col-md-4">
                 <div class="thumbnail">
                     <img class="group list-group-image" src="@((item.Image != null)? Url.Content(@item.Image.Location): @Url.Content("~/Images/Custom/placeholder.png"))" onerror="this.onerror = null; this.src = 'http://placehold.it/400x250/000/fff';" alt="@item.Name" />
                     <div class="caption">
@@ -25,7 +25,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <a class="btn btn-success" id="detail" href="@Url.Action("ProductDetail", new { id = item.Id })">&nbsp;@Locale.Details</a>
+                                <a class="btn btn-success" id="detail" href="@Url.Action("ProductDetail", new {id = item.Id})"><span class="glyphicon glyphicon-list"></span>&nbsp;@Locale.Details</a>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <a class="btn add-to-cart btn-success" href="@item.Id"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;@Locale.Add_to_cart</a>

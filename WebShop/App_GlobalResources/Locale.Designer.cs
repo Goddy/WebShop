@@ -476,6 +476,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string Filter_by {
+            get {
+                return ResourceManager.GetString("Filter_by", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string Forgot_Password {

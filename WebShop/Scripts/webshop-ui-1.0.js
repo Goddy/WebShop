@@ -1,5 +1,9 @@
 ﻿var webShop = webShop || {};
 webShop.utils = {
+    isEmpty: function(text) {
+        return text.trim() === "";
+    },
+
     postOrGet: function (type, url, data, func) {
         $.ajax({
             type: type,
@@ -22,7 +26,7 @@ webShop.utils = {
 
 webShop.searchProducts = (function($, utils) {
     return {
-        search: function(pageNr, clearHtml) {
+        search: function (pageNr, clearHtml) {
             var searchString = $("input.search-text").val();
             var price = [];
             var cat = [];
@@ -43,9 +47,14 @@ webShop.searchProducts = (function($, utils) {
             return utils.jsonPost("/Products/_SearchPartial/", data, function (data) {
                 if (clearHtml) {
                     resultDiv.html(data);
-                    moreBtn.show();
+                    if (utils.isEmpty(data)) {
+                        moreBtn.hide();
+                    } else {
+                        moreBtn.show();
+                    }
+                    
                 } else {
-                    if (data.trim() === "") {
+                    if (utils.isEmpty(data)) {
                         moreBtn.hide();
                     } else {
                         resultDiv.append(data);
