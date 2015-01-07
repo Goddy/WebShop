@@ -305,9 +305,11 @@
     <Content Include="Views\Products\Overview.cshtml" />
     <Content Include="Views\Basket\Payment.cshtml" />
     <Content Include="Views\Products\_ProductPartial.cshtml" />
-    <Content Include="Views\Products\Detail.cshtml">
+    <Content Include="Views\Products\AdminDetail.cshtml">
       <BrowseToURL>~/Products/Detail</BrowseToURL>
     </Content>
+    <Content Include="Views\Products\_DetailPartial.cshtml" />
+    <Content Include="Views\Products\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

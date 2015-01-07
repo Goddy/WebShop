@@ -47,7 +47,17 @@ namespace WebShop.Controllers
         
         // GET: Products
         [Authorize(Roles = "admin")]
-        public ActionResult Detail(int? id)
+        public ActionResult AdminDetail(int? id)
+        {
+            if (id == null)
+                return View("Error");
+            var product = _productService.GetProduct(id.GetValueOrDefault());
+            return product == null ? (ActionResult)HttpNotFound() : View(product);
+        }
+        
+        // GET: Products
+        [Authorize(Roles = "admin")]
+        public ActionResult ProductDetail(int? id)
         {
             if (id == null)
                 return View("Error");

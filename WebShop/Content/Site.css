@@ -17,6 +17,11 @@ body{
     padding-bottom: 100px;    /* height of footer */
 }
 
+#detail {
+    background-color: #3366FF;
+    border-color: #0000FF;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

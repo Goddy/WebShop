@@ -1,0 +1,16 @@
+﻿@using WebShop.App_GlobalResources
+@model WebShop.Models.Product
+
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_DetailPartial")
+
+<div class="row" align="right">
+    <div class="col-xs-12 col-md-6">
+        <a class="btn add-to-cart btn-success" href="@Model.Id"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;@Locale.Add_to_cart</a>
+    </div>
+</div>
+

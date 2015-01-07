@@ -1,6 +1,7 @@
-﻿@using WebShop.App_GlobalResources
+﻿@using System.Net.Mime
+@using WebShop.App_GlobalResources
 @model IEnumerable<WebShop.Models.Product>
-@* 
+@*
     Partial view for  product search results, returns nothing if no results are found.
 *@
 @if (Model.Any())
@@ -15,14 +16,16 @@
                         <h4 class="group inner list-group-item-heading">
                             @Html.DisplayFor(modelItem => item.Name)
                         </h4>
-                        <p class="group inner list-group-item-text">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </p>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <p class="lead">
                                     €@Html.DisplayFor(modelItem => item.Price)
                                 </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success" id="detail" href="@Url.Action("ProductDetail", new { id = item.Id })">&nbsp;@Locale.Details</a>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <a class="btn add-to-cart btn-success" href="@item.Id"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;@Locale.Add_to_cart</a>

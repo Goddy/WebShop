@@ -1,0 +1,14 @@
+﻿@using WebShop.App_GlobalResources
+@model WebShop.Models.Product
+
+@{
+    ViewBag.Title = Locale.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_DetailPartial")
+
+<div class="row" align="right">
+    @Html.ActionLink(Locale.Edit, "Edit", new {  id=Model.Id  }) |
+    @Html.ActionLink(Locale.Delete, "Delete", new {  id=Model.Id})
+</div>
