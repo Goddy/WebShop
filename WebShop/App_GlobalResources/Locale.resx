@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -142,7 +141,7 @@
     <value>Go to cart</value>
   </data>
   <data name="Index" xml:space="preserve">
-    <value>Index</value>
+    <value>Shop</value>
   </data>
   <data name="LargerThan" xml:space="preserve">
     <value>Larger than</value>

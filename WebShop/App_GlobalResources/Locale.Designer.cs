@@ -530,7 +530,7 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Index.
+        ///   Looks up a localized string similar to Shop.
         /// </summary>
         public static string Index {
             get {
