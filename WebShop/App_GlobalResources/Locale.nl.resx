@@ -419,4 +419,7 @@
   <data name="Detail_Page_Title" xml:space="preserve">
     <value>Product detail</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
 </root>

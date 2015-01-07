@@ -26,6 +26,7 @@
 
 <div class="row">
     <div class="col-xs-6 col-sm-3">
+        <h4>@Locale.CategoryTitle</h4>
         <div class="well well-lg">
             @foreach (var cat in categories)
             {
@@ -35,6 +36,7 @@
                 </div>
             }
         </div>
+        <h4>@Locale.Price</h4>
         <div class="well well-lg">
             @foreach (var p in price)
             {
@@ -53,15 +55,7 @@
     <div class="col-xs-12 col-md-8">
         <div class="container">
             <div class="well well-sm">
-                <strong>@Locale.CategoryTitle</strong>
-                <div class="btn-group">
-                    <a href="#" id="list" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-th-list">
-                        </span>List
-                    </a> <a href="#" id="grid" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-th"></span>Grid
-                    </a>
-                </div>
+                <strong>@Locale.Products</strong>
             </div>
             <div id="result">
                 @Html.Partial("_SearchPartial")
