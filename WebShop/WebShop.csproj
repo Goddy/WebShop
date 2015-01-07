@@ -237,6 +237,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Custom\bailey.jpg" />
+    <Content Include="Images\Custom\dvd1.jpg" />
+    <Content Include="Images\Custom\dvd2.jpg" />
     <Content Include="Images\Custom\eisler.jpg" />
     <Content Include="Images\Custom\franky.jpg" />
     <Content Include="Images\Custom\franky_clear.jpg" />

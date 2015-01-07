@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using WebShop.Models;
@@ -100,14 +98,18 @@ namespace WebShop.Migrations
                 new Product{Category = "Rollerblade", Description = "USD is proud to present this extremely high quality Carbon-Free skate for Richie Eisler. Richie paid exceptional attention to detail when creating this skate. The materials are of the highest quality genuine leather and match his favourite shoes. The beauty of these skates is that the more worn they become, the better they look!", Name = "USD Carbon-Free Richie Eisler 3 Grey BootOnly", Price = 279.95},
                 new Product{Category = "Frame", Description = "The next generation of Ground Control frames have arrived, introducing The BIGs.  A collaborative effort with team riders and our design staff, the BIGs are built to offer GC’s trusted street attributes blended with smooth roll of a recreational frame setup.  By increasing the height of the frame, increasing the width of the h-block, and lowering the side walls and outer edges of the center groove, we are now able to offer a frame that allows a maximum wheel size of 72mm that skates like a street frame.  Complete with aluminum spacers, your wheels will roll smooth and fast with minimal resistance.", Name = "GROUNDCONTROL BIG Frame Khaki", Price = 59.99},
                 new Product{Category = "Frame", Description = "The Kizer Fluid is Kizer's longest running frame. Its continuous success is credited to its simple design, solid yet lightweight construction and its speed and consistency on the grind.", Name = "KIZER Fluid 4 Franky Clear Frame", Price = 69.99},
+                new Product{Category = "DVD", Description = "\"Just Live Productions\" presents the fourth installment to the Rollerblading Film Collection. Go 4th is a film based out of New York City & South Florida starring full length profiles on Alex Nunez, Chris Burns, Max Rensen & Thomas LiPani.", Name = "Go 4th", Price = 14.99},
+                new Product{Category = "DVD", Description = "\"You ready?\" are Brian Aragon’s first words in Game Theory as he gets amped for a trick in the 2010 Razors Team video. Produced by Helton “Brazilionaire” Siqueira Game Theory is one of the most anticipated videos of the year. It showcases truly next level skating from an amazing team of pros, amateurs and up and coming talents. Featuring Dre Powell, Stefan Horngacher, Julian Bah, Jeph Howard, Mike \"Murda\" Johnson, Mathias Silhan, Max Jubin, Roman Abrate, Eric \"Ski\" Perkett, Edwin Wieringh, Iain McLeod and ending in a firework of hammers by Brian Aragon.", Name = "Game Theory", Price = 20}
             };
             var images = new List<Image>
             {
                 new Image("~/Images/Custom/bailey.jpg", null),
-                new Image("~/Images/Custom/eisler.jpg", null),
                 new Image("~/Images/Custom/franky.jpg", null),
+                new Image("~/Images/Custom/eisler.jpg", null),
                 new Image("~/Images/Custom/franky_clear.jpg", null),
-                new Image("~/Images/Custom/gc_white.jpg", null)
+                new Image("~/Images/Custom/gc_white.jpg", null),
+                new Image("~/Images/Custom/dvd1.jpg", null),
+                new Image("~/Images/Custom/dvd2.jpg", null)
             };
             products = context.Products.AddRange(products).ToList();
             for (var i = 0; i < images.Count; i++)
@@ -117,10 +119,6 @@ namespace WebShop.Migrations
             }
             context.Images.AddRange(images);
             context.SaveChanges();
-            //setup admin rights
-            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "insert into AspNetRoles (Id, Name) values (1, 'admin')");
-            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "insert into AspNetUserRoles(userid, roleid) values ((select id from AspNetUsers where name = 'Admin'), 1)");
-
         }
     }
 }
