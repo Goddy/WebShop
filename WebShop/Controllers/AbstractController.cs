@@ -1,23 +1,23 @@
-﻿using System.Security.Cryptography;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebShop.Models;
-using WebShop.Services;
 
 namespace WebShop.Controllers
 {
     public abstract class AbstractController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly ApplicationUserManager _userManager;
 
-        protected AbstractController(IAccountService service)
+        protected AbstractController(ApplicationUserManager userManager)
         {
-            _accountService = service;
+            _userManager = userManager;
         }
 
         protected ApplicationUser GetUser()
         {
-            return _accountService.GetAccount(User.Identity.GetUserId());
+            var userid = User.Identity.GetUserId();
+            return _userManager.Users.FirstOrDefault(x => x.Id.Equals(userid));
         }
 
         protected bool IsAuthenticated()

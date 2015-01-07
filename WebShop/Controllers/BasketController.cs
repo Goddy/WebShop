@@ -12,7 +12,7 @@ namespace WebShop.Controllers
         private readonly ApplicationUserManager _userManager;
         private readonly IOrderService _orderService;
 
-        public BasketController(IOrderService orderService, ApplicationUserManager applicationUserManager, IAccountService accountService) : base (accountService)
+        public BasketController(IOrderService orderService, ApplicationUserManager applicationUserManager) : base (applicationUserManager)
         {
             _orderService = orderService;
             _userManager = applicationUserManager;

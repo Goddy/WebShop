@@ -7,24 +7,29 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebShop.App_GlobalResources;
 using WebShop.Models;
+using WebShop.Services;
 using WebShop.ViewModel;
 
 namespace WebShop.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : AbstractController
     {
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
+        private readonly ApplicationRoleManager _roleManager;
 
-        public AccountController()
+        public AccountController(ApplicationUserManager accountService)
+            : base(accountService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
+            :base(userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         //

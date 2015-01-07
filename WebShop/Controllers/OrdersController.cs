@@ -5,7 +5,7 @@ namespace WebShop.Controllers
 {
     public class OrdersController : AbstractController
     {
-        public OrdersController(IAccountService accountService) : base (accountService)
+        public OrdersController(ApplicationUserManager accountService) : base (accountService)
         {
 
         }

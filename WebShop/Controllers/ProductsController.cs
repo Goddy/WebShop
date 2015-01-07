@@ -16,7 +16,7 @@ namespace WebShop.Controllers
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService, IAccountService accountService)
+        public ProductsController(IProductService productService, ApplicationUserManager accountService)
             : base(accountService)
         {
             _productService = productService;
