@@ -361,7 +361,7 @@
     <value>No Orders found.</value>
   </data>
   <data name="Overview" xml:space="preserve">
-    <value>Overview</value>
+    <value>Product overview</value>
   </data>
   <data name="Payment_Title" xml:space="preserve">
     <value>Payment</value>
@@ -422,5 +422,11 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="Add_User" xml:space="preserve">
+    <value>Add user</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
   </data>
 </root>

@@ -21,7 +21,8 @@ namespace WebShop.Migrations
         {
             context.Database.Delete();
             context.Database.Create();
-            var applicationUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context), context);
+            var applicationUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var applicationRoleManager = new ApplicationRoleManager(new ApplicationRoleStore(context));
             Debug.WriteLine("Adding users");
             var users = new List<ApplicationUser>
             {
@@ -86,9 +87,13 @@ namespace WebShop.Migrations
                     }
                 }
             };
+            //create roles
+            applicationRoleManager.Create(new ApplicationRole {Name = "admin"});
             foreach (var applicationUser in users)
             {
                 applicationUserManager.Create(applicationUser, "Password1!");
+                if (applicationUser.Name.Equals("Admin"))
+                    applicationUserManager.AddToRole(applicationUser.Id, "admin");
             }
             Debug.WriteLine("Adding products");
             var products = new List<Product>

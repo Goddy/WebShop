@@ -129,15 +129,35 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return View(model);
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name,
-                Address = new Address {Street = model.Street, Number = model.Number, City = model.City, PostalCode = model.PostalCode, Country = model.Country}};
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                Name = model.Name,
+                Address = new Address { Street = model.Street, Number = model.Number, City = model.City, PostalCode = model.PostalCode, Country = model.Country }
+            };
+            
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+                //set admin if required
+                if (model.IsAdmin)
+                {
+                    var roles = _roleManager.Roles.ToList();
+                    await _userManager.AddToRoleAsync(user.Id, "admin");
+                }
+                //Admins stay on page, no login needed
+               
+                if (User.IsInRole("admin"))
+                {
+                    AddStatusMessage("Succesfully added user " + user.UserName);
+                    ModelState.Clear();
+                    return View();
+                }
                 await _signInManager.SignInAsync(user, false, false);
-                    
+
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -179,7 +199,7 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return View(model);
             var user = await _userManager.FindByNameAsync(model.Email);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
@@ -422,7 +442,7 @@ namespace WebShop.Controllers
         private bool IsPaying()
         {
             var ready = Session["readyToPay"];
-            return ready !=null && (bool) ready;
+            return ready != null && (bool)ready;
         }
 
         private ActionResult ReturnToOrders()

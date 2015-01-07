@@ -97,6 +97,24 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add user.
+        /// </summary>
+        public static string Add_User {
+            get {
+                return ResourceManager.GetString("Add_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to and.
         /// </summary>
         public static string And {
@@ -701,7 +719,7 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overview.
+        ///   Looks up a localized string similar to Product overview.
         /// </summary>
         public static string Overview {
             get {

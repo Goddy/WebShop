@@ -324,7 +324,7 @@
     <value>Nummer</value>
   </data>
   <data name="Overview" xml:space="preserve">
-    <value>Overrzicht</value>
+    <value>Product overrzicht</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Wachtwoord</value>
@@ -421,5 +421,11 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Prijs</value>
+  </data>
+  <data name="Add_User" xml:space="preserve">
+    <value>Gebruiker toevoegen</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 using WebShop.App_GlobalResources;
 
 namespace WebShop.ViewModel
@@ -104,6 +105,9 @@ namespace WebShop.ViewModel
         [Display(ResourceType = typeof (Locale), Name = "Country")]
         [Required]
         public string Country { get; set; }
+
+        [Display(ResourceType = typeof(Locale), Name = "Admin")]
+        public bool IsAdmin { get; set; }
     }
 
     public class ResetPasswordViewModel

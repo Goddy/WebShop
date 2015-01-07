@@ -26,14 +26,15 @@ namespace WebShop
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             container.RegisterType<IOrderService, OrderService>();
             container.RegisterType<IProductService, ProductService>();
-            container.RegisterType<IAccountService, AccountService>();
 
             //A bit of IoC txeaking with Identity (http://tech.trailmax.info/2014/09/aspnet-identity-and-ioc-container-registration/)
             container.RegisterType<ApplicationUserManager>();
             container.RegisterType<ApplicationSignInManager>();
+            container.RegisterType<ApplicationRoleManager>();
             container.RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IAuthenticationManager>(new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new InjectionConstructor(typeof(WebShopContext)));
+            container.RegisterType<IRoleStore<ApplicationRole>, ApplicationRoleStore>(new InjectionConstructor(typeof(WebShopContext)));
         }
     }
 }
