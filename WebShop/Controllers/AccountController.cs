@@ -59,8 +59,6 @@ namespace WebShop.Controllers
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
-                case SignInStatus.Failure:
-                    return View("Error");
                 default:
                     ModelState.AddModelError("", Locale.Invalid_login_attempt);
                     return View(model);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Security;
@@ -87,11 +88,6 @@ namespace WebShop.Migrations
                     }
                 }
             };
-            if (!Roles.RoleExists("admin"))
-            {
-                Roles.CreateRole("admin");
-                Roles.AddUserToRole("admin@admin.be", "admin");
-            }
             foreach (var applicationUser in users)
             {
                 applicationUserManager.Create(applicationUser, "Password1!");
@@ -121,6 +117,10 @@ namespace WebShop.Migrations
             }
             context.Images.AddRange(images);
             context.SaveChanges();
+            //setup admin rights
+            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "insert into AspNetRoles (Id, Name) values (1, 'admin')");
+            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "insert into AspNetUserRoles(userid, roleid) values ((select id from AspNetUsers where name = 'Admin'), 1)");
+
         }
     }
 }
