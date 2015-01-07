@@ -157,9 +157,9 @@ namespace WebShop.Controllers
         {
             return new Dictionary<int, int>
             {
-                { 0, 100 },
-                { 100, 500 },
-                { 500, 1000 }
+                { 0, 50 },
+                { 50, 100 },
+                { 100, 500 }
             };
         }
 
