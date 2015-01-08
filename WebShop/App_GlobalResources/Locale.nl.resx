@@ -440,4 +440,7 @@
   <data name="Actions" xml:space="preserve">
     <value>Acties</value>
   </data>
+  <data name="Basket" xml:space="preserve">
+    <value>Winkelmandje</value>
+  </data>
 </root>

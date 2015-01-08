@@ -32,6 +32,7 @@ namespace WebShop.ViewModel
         {
             OrderProductModels = new List<OrderProductModel>();
         }
+
         public List<OrderProductModel> OrderProductModels { get; set; }
         public double Total
         {

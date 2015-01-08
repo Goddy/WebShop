@@ -1,6 +1,6 @@
 ﻿@using WebShop.App_GlobalResources
-@using WebShop.Models
-@model IEnumerable<Product>
+@using WebShop.ViewModel
+@model IEnumerable<WebShop.Models.Product>
 @{
     ViewBag.Title = Locale.Index;
     var categories = ViewData["Categories"] as List<String>;
@@ -115,7 +115,6 @@
                 e.preventDefault();
                 searchProd.search($("#more").attr("href"), false);
             });
-
             $("body").delegate(".add-to-cart", "click", function (e) {
                 e.preventDefault();
                 basketUtils.addToBasket($(this));

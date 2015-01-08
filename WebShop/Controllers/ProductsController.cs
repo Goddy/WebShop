@@ -56,7 +56,7 @@ namespace WebShop.Controllers
         }
         
         // GET: Products
-        [Authorize(Roles = "Admin, Assistent")]
+        [AllowAnonymous]
         public ActionResult ProductDetail(int? id)
         {
             if (id == null)
