@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using WebShop.ViewModel;
 
@@ -14,16 +15,18 @@ namespace WebShop.Controllers
         private readonly ApplicationSignInManager _signInManager;
         private readonly ApplicationUserManager _userManager;
         private readonly IAuthenticationManager _authenticationManager;
+        private readonly ApplicationRoleManager _applicationRoleManager;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager, ApplicationRoleManager applicationRoleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authenticationManager = authenticationManager;
+            _applicationRoleManager = applicationRoleManager;
         }
 
         
@@ -47,6 +50,7 @@ namespace WebShop.Controllers
                 _authenticationManager.SignOut();
                 return RedirectToAction("Index", "Products");
             }
+            
             var model = new IndexViewModel
             {
                 HasPassword = user.PasswordHash != null,
@@ -54,7 +58,8 @@ namespace WebShop.Controllers
                 TwoFactor = user.TwoFactorEnabled,
                 Logins = await _userManager.GetLoginsAsync(user.Id),
                 BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id),
-                User = user
+                User = user,
+                Roles = GetRoleForUser(user)
             };
             return View(model);
         }
@@ -84,11 +89,11 @@ namespace WebShop.Controllers
                 TwoFactor = user.TwoFactorEnabled,
                 Logins = await _userManager.GetLoginsAsync(user.Id),
                 BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id),
-                User = user
+                User = user,
+                Roles = GetRoleForUser(user)
             };
             return View("Index", model);
         }
-
 
         //
         // POST: /Manage/RemoveLogin
@@ -247,6 +252,12 @@ namespace WebShop.Controllers
             user.Address.City = model.User.Address.City;
             user.Address.PostalCode = model.User.Address.PostalCode;
             user.Address.Country = model.User.Address.Country;
+            var userRole = GetRoleForUser(user);
+            if (!model.Roles.Equals(userRole))
+            {
+                await _userManager.RemoveFromRoleAsync(user.Id, userRole.ToString());
+                await _userManager.AddToRoleAsync(user.Id, model.Roles.ToString());
+            }
             await _userManager.UpdateAsync(user);
             return View("Index", model);
         }
@@ -373,6 +384,22 @@ namespace WebShop.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private Role GetRoleForUser(IdentityUser<string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim> user)
+        {
+            var firstOrDefault = _applicationRoleManager.Roles.ToList().FirstOrDefault(x =>
+            {
+                var identityUserRole = user.Roles.FirstOrDefault();
+                return identityUserRole != null && x.Id.Equals(identityUserRole.RoleId);
+            });
+            if (firstOrDefault == null)
+                return Role.User;
+            var roleName = firstOrDefault.Name;
+            Role role;
+            if (!Enum.TryParse(roleName, false, out role))
+                role = Role.User;
+            return role;
         }
 
         public enum ManageMessageId

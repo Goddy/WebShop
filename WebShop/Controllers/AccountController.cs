@@ -157,6 +157,7 @@ namespace WebShop.Controllers
                     ModelState.Clear();
                     return View();
                 }
+                await _userManager.AddToRoleAsync(user.Id, Role.User.ToString());
                 await _signInManager.SignInAsync(user, false, false);
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

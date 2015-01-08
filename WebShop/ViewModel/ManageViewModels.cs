@@ -15,6 +15,7 @@ namespace WebShop.ViewModel
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public ApplicationUser User { get; set; }
+        public Role Roles { get; set; }
     }
 
     public class ManageLoginsViewModel
