@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using WebShop.App_GlobalResources;
+using WebShop.Models;
 
 namespace WebShop.ViewModel
 {
@@ -13,6 +14,7 @@ namespace WebShop.ViewModel
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public ApplicationUser User { get; set; }
     }
 
     public class ManageLoginsViewModel

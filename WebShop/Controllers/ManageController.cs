@@ -53,7 +53,8 @@ namespace WebShop.Controllers
                 PhoneNumber = user.PhoneNumber,
                 TwoFactor = user.TwoFactorEnabled,
                 Logins = await _userManager.GetLoginsAsync(user.Id),
-                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
+                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id),
+                User = user
             };
             return View(model);
         }
@@ -82,7 +83,8 @@ namespace WebShop.Controllers
                 PhoneNumber = user.PhoneNumber,
                 TwoFactor = user.TwoFactorEnabled,
                 Logins = await _userManager.GetLoginsAsync(user.Id),
-                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
+                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id),
+                User = user
             };
             return View("Index", model);
         }
