@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using WebShop.Models;
 using WebShop.ViewModel;
 
 namespace WebShop.Controllers
@@ -41,14 +41,19 @@ namespace WebShop.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user == null)
+            {
+                _authenticationManager.SignOut();
+                return View("Login");
+            }
             var model = new IndexViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await _userManager.GetLoginsAsync(userId),
-                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                HasPassword = user.PasswordHash != null,
+                PhoneNumber = user.PhoneNumber,
+                TwoFactor = user.TwoFactorEnabled,
+                Logins = await _userManager.GetLoginsAsync(user.Id),
+                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
             };
             return View(model);
         }
@@ -318,26 +323,6 @@ namespace WebShop.Controllers
             {
                 ModelState.AddModelError("", error);
             }
-        }
-
-        private bool HasPassword()
-        {
-            var user = _userManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PasswordHash != null;
-            }
-            return false;
-        }
-
-        private bool HasPhoneNumber()
-        {
-            var user = _userManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PhoneNumber != null;
-            }
-            return false;
         }
 
         public enum ManageMessageId
