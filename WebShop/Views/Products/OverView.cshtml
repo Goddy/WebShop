@@ -14,15 +14,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Locale.Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
+            @Locale.CategoryTitle
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Locale.Price
         </th>
-        <th></th>
+        <th>
+            @Locale.Actions
+        </th>
     </tr>
 
 @foreach (var item in Model) {
