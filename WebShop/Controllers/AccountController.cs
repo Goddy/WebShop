@@ -16,19 +16,21 @@ namespace WebShop.Controllers
     {
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
-        private readonly ApplicationRoleManager _roleManager;
+        private readonly ApplicationRoleManager _applicationRoleManager;
+        private readonly IAuthenticationManager _authenticationManager;
 
         public AccountController(ApplicationUserManager accountService)
             : base(accountService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, IAuthenticationManager authenticationManager)
             :base(userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
+            _applicationRoleManager = roleManager;
+            _authenticationManager = authenticationManager;
         }
 
         //
@@ -124,7 +126,7 @@ namespace WebShop.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Accounts()
         {
-            return View();
+            return View(new AccountsViewModel(_userManager.Users.ToList(), _applicationRoleManager.Roles.ToList()));
         }
 
         //
@@ -319,7 +321,7 @@ namespace WebShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await _authenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
@@ -360,7 +362,7 @@ namespace WebShop.Controllers
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                var info = await _authenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
@@ -388,7 +390,7 @@ namespace WebShop.Controllers
         [Authorize]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            _authenticationManager.SignOut();
             return RedirectToAction("Index", "Products");
         }
 
@@ -421,14 +423,6 @@ namespace WebShop.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
 
         private void AddErrors(IdentityResult result)
         {
