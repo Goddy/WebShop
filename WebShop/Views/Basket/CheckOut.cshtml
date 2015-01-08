@@ -41,7 +41,7 @@ else
                                         @Html.DisplayFor(m => m.OrderProductModels[i].Product.Name)
                                     </td>
                                     <td>
-                                        @Html.EditorFor(m => m.OrderProductModels[i].Amount, new { htmlAttributes = new { @class = "form-control amount" } })
+                                        @Html.EditorFor(m => m.OrderProductModels[i].Amount, new { htmlAttributes = new { @class = "form-control amount", @min = "1" } })
                                         <p class="hidden price">@Html.DisplayFor(m => m.OrderProductModels[i].Product.Price)</p>
                                     </td>
                                     <td>
