@@ -91,6 +91,14 @@ namespace WebShop
         }
     }
 
+    //configure the role manager
+    public enum Role
+    {
+        User,
+        Admin,
+        Assistent
+    }
+
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
         public ApplicationRoleManager(IRoleStore<ApplicationRole> store) : base(store)

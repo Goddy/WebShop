@@ -31,7 +31,7 @@ namespace WebShop.Controllers
         }
 
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public ActionResult Add()
         {
             AddData("action", "add");
@@ -39,14 +39,14 @@ namespace WebShop.Controllers
         }
 
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public ActionResult Overview()
         {
             return View(_productService.GetAllProducts());
         }
         
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public ActionResult AdminDetail(int? id)
         {
             if (id == null)
@@ -56,7 +56,7 @@ namespace WebShop.Controllers
         }
         
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public ActionResult ProductDetail(int? id)
         {
             if (id == null)
@@ -66,7 +66,7 @@ namespace WebShop.Controllers
         }
         
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public async Task<ViewResult> Delete(int? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace WebShop.Controllers
         }
 
         // GET: Products
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         public ActionResult Edit(int? id)
         {
             if (id == null) 
@@ -88,7 +88,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add([Bind(Include = "Name,Description,Category,Price")] Product product, HttpPostedFileBase productImage)
         {
@@ -115,7 +115,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin, Assistent")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Product product, HttpPostedFileBase productImage)
         {

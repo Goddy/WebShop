@@ -106,8 +106,8 @@ namespace WebShop.ViewModel
         [Required]
         public string Country { get; set; }
 
-        [Display(ResourceType = typeof(Locale), Name = "Admin")]
-        public bool IsAdmin { get; set; }
+        [Display(ResourceType = typeof (Locale), Name = "Role")]
+        public Role Role { get; set; }
     }
 
     public class ResetPasswordViewModel

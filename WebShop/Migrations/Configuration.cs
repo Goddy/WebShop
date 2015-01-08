@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -88,7 +89,10 @@ namespace WebShop.Migrations
                 }
             };
             //create roles
-            applicationRoleManager.Create(new ApplicationRole {Name = "admin"});
+            foreach (var role in Enum.GetValues(typeof(Role)))
+            {
+                applicationRoleManager.Create(new ApplicationRole { Name = role.ToString() });
+            }
             foreach (var applicationUser in users)
             {
                 applicationUserManager.Create(applicationUser, "Password1!");

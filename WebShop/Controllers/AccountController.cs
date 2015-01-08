@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebShop.App_GlobalResources;
 using WebShop.Models;
-using WebShop.Services;
 using WebShop.ViewModel;
 
 namespace WebShop.Controllers
@@ -142,16 +141,10 @@ namespace WebShop.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                //set admin if required
-                if (model.IsAdmin)
+                //Admins stay on page, no login needed, set role
+                if (User.IsInRole("Admin"))
                 {
-                    var roles = _roleManager.Roles.ToList();
-                    await _userManager.AddToRoleAsync(user.Id, "admin");
-                }
-                //Admins stay on page, no login needed
-               
-                if (User.IsInRole("admin"))
-                {
+                    await _userManager.AddToRoleAsync(user.Id, model.Role.ToString());
                     AddStatusMessage("Succesfully added user " + user.UserName);
                     ModelState.Clear();
                     return View();

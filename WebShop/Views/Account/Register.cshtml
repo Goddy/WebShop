@@ -78,12 +78,12 @@
             @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
         </div>
     </div>
-    if (Request.IsAuthenticated && User.IsInRole("admin"))
+    if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
         <div class="form-group">
-            @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.CheckBoxFor(model => model.IsAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
     }
