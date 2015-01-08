@@ -24,7 +24,7 @@ namespace WebShop.Controllers
             catch (Exception)
             {
                 _authenticationManager.SignOut();
-                return View("Login");
+                return RedirectToAction("Index", "Products");
             }
         }
     }

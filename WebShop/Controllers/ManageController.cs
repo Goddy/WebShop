@@ -45,7 +45,7 @@ namespace WebShop.Controllers
             if (user == null)
             {
                 _authenticationManager.SignOut();
-                return View("Login");
+                return RedirectToAction("Index", "Products");
             }
             var model = new IndexViewModel
             {
@@ -86,6 +86,7 @@ namespace WebShop.Controllers
             };
             return View("Index", model);
         }
+
 
         //
         // POST: /Manage/RemoveLogin
