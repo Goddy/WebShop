@@ -96,8 +96,8 @@ namespace WebShop.Migrations
             foreach (var applicationUser in users)
             {
                 applicationUserManager.Create(applicationUser, "Password1!");
-                if (applicationUser.Name.Equals("Admin"))
-                    applicationUserManager.AddToRole(applicationUser.Id, "admin");
+                applicationUserManager.AddToRole(applicationUser.Id,
+                    applicationUser.Name.Equals("Admin") ? "Admin" : "User");
             }
             Debug.WriteLine("Adding products");
             var products = new List<Product>
