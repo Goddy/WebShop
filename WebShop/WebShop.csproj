@@ -316,6 +316,7 @@
     <Content Include="Views\Products\_DetailPartial.cshtml" />
     <Content Include="Views\Products\ProductDetail.cshtml" />
     <Content Include="Views\Shared\_BasketModal.cshtml" />
+    <Content Include="Views\Account\Accounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

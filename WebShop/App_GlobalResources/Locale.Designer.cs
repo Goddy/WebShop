@@ -61,6 +61,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account overview.
+        /// </summary>
+        public static string Account_Overview {
+            get {
+                return ResourceManager.GetString("Account_Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {

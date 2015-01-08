@@ -113,10 +113,16 @@ namespace WebShop.Controllers
             }
         }
 
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
+        {
+            return View();
+        }
+        
+        // GET: /Account/Accounts
+        [Authorize(Roles = "Admin")]
+        public ActionResult Accounts()
         {
             return View();
         }
