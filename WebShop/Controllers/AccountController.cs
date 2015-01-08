@@ -402,6 +402,20 @@ namespace WebShop.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
+        public async Task<ViewResult> Delete(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+                AddStatusMessage("Successfully deleted user");
+                return View("Accounts", new AccountsViewModel(_userManager.Users.ToList(), _applicationRoleManager.Roles.ToList()));
+            }
+            AddStatusMessage("Unable to remove user");
+            return View("Accounts", new AccountsViewModel(_userManager.Users.ToList(), _applicationRoleManager.Roles.ToList()));
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
