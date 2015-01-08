@@ -233,6 +233,24 @@ namespace WebShop.Controllers
             return View();
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ViewResult> Save(IndexViewModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.User.Id);
+            user.Name = model.User.Name;
+            user.Email = model.User.Email;
+            user.PhoneNumber = model.User.PhoneNumber;
+            user.Address.Street = model.User.Address.Street;
+            user.Address.Number = model.User.Address.Number;
+            user.Address.City = model.User.Address.City;
+            user.Address.PostalCode = model.User.Address.PostalCode;
+            user.Address.Country = model.User.Address.Country;
+            await _userManager.UpdateAsync(user);
+            return View("Index", model);
+        }
+
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
