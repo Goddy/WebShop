@@ -58,6 +58,35 @@ namespace WebShop.Controllers
             return View(model);
         }
 
+        [ActionName("EditAction")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Index(string id, ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "The password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "The password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "The two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "The phone number was removed."
+                : "";
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return View("Error");
+            }
+            var model = new IndexViewModel
+            {
+                HasPassword = user.PasswordHash != null,
+                PhoneNumber = user.PhoneNumber,
+                TwoFactor = user.TwoFactorEnabled,
+                Logins = await _userManager.GetLoginsAsync(user.Id),
+                BrowserRemembered = await _authenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
+            };
+            return View("Index", model);
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
