@@ -447,4 +447,7 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
 </root>

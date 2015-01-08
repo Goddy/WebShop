@@ -28,10 +28,10 @@ namespace WebShop.Services
         public Order BuildAndSaveOrder(OrderProductList orderProductList, ApplicationUser user)
         {
             //Make sure the user is fetched
-            //var user = _uow.UserRepository.Get(userId);
+            var newUser = _uow.UserRepository.Get(user.Id);
             //Create the order
-            var order = new Order {Account = user};
-            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(_uow.ProductRepository.Get(x.ProductId), x.Amount)));
+            var order = new Order {Account = newUser};
+            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(x.Product, x.Amount)));
             _uow.OrderRepository.Add(order);
             return order;
         }

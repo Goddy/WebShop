@@ -31,6 +31,7 @@
                                       <ul class="dropdown-menu" role="menu">
                                           <li>@Html.ActionLink(Locale.Add_Product, "Add", "Products")</li>
                                           <li>@Html.ActionLink(@Locale.Overview, "Overview", "Products")</li>
+                                          <li>@Html.ActionLink(@Locale.Orders, "Overview", "Orders")</li>
                                           @if (User.IsInRole("Admin"))
                                           {
                                             <li>@Html.ActionLink(Locale.Add_User, "Register", "Account")</li>
