@@ -1,4 +1,5 @@
-﻿@model WebShop.Models.ApplicationUser
+﻿@using WebShop.App_GlobalResources
+@model WebShop.ViewModel.AccountsViewModel
 
 @{
     ViewBag.Title = "Accounts";
@@ -7,3 +8,51 @@
 
 <h2>Accounts</h2>
 
+<p>
+    @Html.ActionLink(Locale.Add_User, "Register")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Locale.Name
+        </th>
+        <th>
+            @Locale.Email
+        </th>
+        <th>
+            @Locale.Role
+        </th>
+        <th>
+            @Locale.Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ApplicationUsers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @{
+                var role = item.Roles.FirstOrDefault();
+                var firstOrDefault = Model.ApplicationRoles.FirstOrDefault(x => role != null && x.Id.Equals(role.RoleId));
+                var roleName = "not available";
+                if (firstOrDefault != null)
+                {
+                    roleName = firstOrDefault.Name;
+                }
+            } 
+            <td>
+                @Html.DisplayFor(modelItem => roleName)
+            </td>
+            <td>
+                @Html.ActionLink(Locale.Edit, "Edit", new { id = item.Id }) |
+                @Html.ActionLink(Locale.Delete, "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

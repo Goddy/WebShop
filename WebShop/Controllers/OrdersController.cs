@@ -1,19 +1,31 @@
-﻿using System.Web.Mvc;
-using WebShop.Services;
+﻿using System;
+using System.Web.Mvc;
+using Microsoft.Owin.Security;
 
 namespace WebShop.Controllers
 {
     public class OrdersController : AbstractController
     {
-        public OrdersController(ApplicationUserManager accountService) : base (accountService)
-        {
+        private readonly IAuthenticationManager _authenticationManager;
 
+        public OrdersController(ApplicationUserManager accountService, IAuthenticationManager authenticationManager)
+            : base(accountService)
+        {
+            _authenticationManager = authenticationManager;
         }
         // GET: Order
         [Authorize]
         public ActionResult MyOrders()
         {
-            return View(GetUser().Orders);
+            try
+            {
+                return View(GetUser().Orders);
+            }
+            catch (Exception)
+            {
+                _authenticationManager.SignOut();
+                return View("Login");
+            }
         }
     }
 }

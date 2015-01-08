@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using WebShop.App_GlobalResources;
+using WebShop.Models;
 
 namespace WebShop.ViewModel
 {
@@ -137,5 +138,19 @@ namespace WebShop.ViewModel
         [EmailAddress]
         [Display(ResourceType = typeof (Locale), Name = "Email")]
         public string Email { get; set; }
+    }
+
+    public class AccountsViewModel
+    {
+        public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
+        public IEnumerable<ApplicationRole> ApplicationRoles { get; set; }
+        
+        public AccountsViewModel(){}
+
+        public AccountsViewModel(IEnumerable<ApplicationUser> users, IEnumerable<ApplicationRole> roles)
+        {
+            ApplicationUsers = users;
+            ApplicationRoles = roles;
+        }
     }
 }

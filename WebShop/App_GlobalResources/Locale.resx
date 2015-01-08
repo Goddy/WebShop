@@ -438,4 +438,7 @@
   <data name="Account_Overview" xml:space="preserve">
     <value>Account overview</value>
   </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
 </root>
