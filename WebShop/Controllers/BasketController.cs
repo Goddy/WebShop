@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using WebShop.Services;
 using WebShop.ViewModel;
@@ -60,6 +61,15 @@ namespace WebShop.Controllers
             AddStatusMessage("Order successfully processed.");
             Session["order"] = null;
             return RedirectToAction("MyOrders","Orders");
+        }
+
+        [Authorize]
+        public ActionResult Remove(int? id)
+        {
+            var order = (OrderProductList)Session["order"];
+            order.OrderProductModels.RemoveAll(x => x.ProductId.Equals(id));
+            Session["order"] = order;
+            return View("CheckOut", order);
         }
     }
 }

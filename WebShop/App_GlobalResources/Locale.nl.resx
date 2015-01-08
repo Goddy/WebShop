@@ -443,4 +443,7 @@
   <data name="Basket" xml:space="preserve">
     <value>Winkelmandje</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijder</value>
+  </data>
 </root>

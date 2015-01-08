@@ -32,6 +32,7 @@ else
                                 <th>
                                     @Locale.Subtotal
                                 </th>
+                                <th></th>
                             </tr>
                             @for (var i = 0; i < Model.OrderProductModels.Count(); ++i)
                             {
@@ -47,6 +48,9 @@ else
                                     <td>
                                         <p class="subTotal">@Html.DisplayFor(m => m.OrderProductModels[i].Total)</p>
                                     </td>
+                                    <td>
+                                        <a class="btn btn-danger" href="@Url.Action("Remove", new { id = Model.OrderProductModels[i].ProductId })"><span class="glyphicon glyphicon-remove"></span>&nbsp;@Locale.Remove</a>
+                                    </td>
                                 </tr>
                             }
 
@@ -57,6 +61,7 @@ else
                                 <td>
                                     <p class="grandTotal">@Html.DisplayFor(m => m.Total)</p>
                                 </td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -65,7 +70,7 @@ else
                 <div class="panel-footer">
                     <div class="form-group">
                         <div class="pull-right">
-                            <input class="btn btn-danger" id="submit" value="@Locale.CheckOut_Title" type="submit">
+                            <input class="btn btn-success" id="submit" value="@Locale.CheckOut_Title" type="submit">
                         </div>
                     </div>
                 </div>
