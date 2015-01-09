@@ -38,10 +38,10 @@ namespace WebShop.Services
             return order;
         }
 
-        public OrderProductList BuildOrderProductListFromBasket(HashSet<int> products)
+        public OrderProductList BuildOrderProductListFromBasket(List<int> products)
         {
             var orderList = new OrderProductList();
-            products.ForEach(x => orderList.OrderProductModels.Add(new OrderProductModel(_uow.ProductRepository.Get(x), 1)));
+            products.Distinct().ForEach(x => orderList.OrderProductModels.Add(new OrderProductModel(_uow.ProductRepository.Get(x), products.Count(y=>y.Equals(x)))));
             return orderList;
         }
 

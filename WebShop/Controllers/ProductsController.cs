@@ -148,7 +148,7 @@ namespace WebShop.Controllers
         [AllowAnonymous]
         public void AddToBasket(int productId)
         {
-            var cartProducts = (Session["cartProducts"] as HashSet<int>) ?? new HashSet<int>();
+            var cartProducts = (Session["cartProducts"] as List<int>) ?? new List<int>();
             cartProducts.Add(productId);
             Session["cartProducts"] = cartProducts;
         }

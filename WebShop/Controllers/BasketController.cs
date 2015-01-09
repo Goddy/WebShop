@@ -21,7 +21,7 @@ namespace WebShop.Controllers
         [AllowAnonymous]
         public ActionResult CheckOut()
         {
-            var cartProducts = (Session["cartProducts"] as HashSet<int>) ?? new HashSet<int>();
+            var cartProducts = (Session["cartProducts"] as List<int>) ?? new List<int>();
             var order = _orderService.BuildOrderProductListFromBasket(cartProducts);
             Session["order"] = order;
             return View(order);

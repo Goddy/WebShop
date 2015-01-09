@@ -12,7 +12,7 @@ namespace WebShop.Services
     {
         List<Order> GetAllOrders();
         Order BuildAndSaveOrder(OrderProductList orderProductList, ApplicationUser user);
-        OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
+        OrderProductList BuildOrderProductListFromBasket(List<int> products);
         OrderProductList RepopulateProductOrderList(OrderProductList list);
         Task<bool> Remove(int id);
         Task<Order> Get(int id);
