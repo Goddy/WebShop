@@ -18,17 +18,6 @@ namespace WebShop.ViewModel
         public Role Roles { get; set; }
     }
 
-    public class ManageLoginsViewModel
-    {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
-    }
-
-    public class FactorViewModel
-    {
-        public string Purpose { get; set; }
-    }
-
     public class SetPasswordViewModel
     {
         [Required]
@@ -60,31 +49,5 @@ namespace WebShop.ViewModel
         [Display(ResourceType = typeof (Locale), Name = "Confirm_new_password")]
         [Compare("NewPassword", ErrorMessageResourceType = typeof (Locale), ErrorMessageResourceName = "Password_match_issue")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class AddPhoneNumberViewModel
-    {
-        [Required]
-        [Phone]
-        [Display(ResourceType = typeof (Locale), Name = "Phone_Number")]
-        public string Number { get; set; }
-    }
-
-    public class VerifyPhoneNumberViewModel
-    {
-        [Required]
-        [Display(ResourceType = typeof (Locale), Name = "Code")]
-        public string Code { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(ResourceType = typeof (Locale), Name = "Phone_Number")]
-        public string PhoneNumber { get; set; }
-    }
-
-    public class ConfigureTwoFactorViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
 }
