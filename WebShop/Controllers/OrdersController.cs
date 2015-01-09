@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using WebShop.Services;
@@ -35,6 +36,21 @@ namespace WebShop.Controllers
         public ActionResult Overview()
         {
             return View(_orderService.GetAllOrders());
+        }
+
+        [Authorize(Roles = "Admin, Assistent")]
+        public ActionResult Edit(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Authorize(Roles = "Admin, Assistent")]
+        public async Task<ViewResult> Remove(int? id)
+        {
+            if (id == null)
+                return View("Error");
+            await _orderService.Remove((int)id);
+            return View("Overview", _orderService.GetAllOrders());
         }
     }
 }

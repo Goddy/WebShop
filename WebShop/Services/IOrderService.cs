@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebShop.Models;
 using WebShop.ViewModel;
 
@@ -14,5 +14,6 @@ namespace WebShop.Services
         Order BuildAndSaveOrder(OrderProductList orderProductList, ApplicationUser user);
         OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
         OrderProductList RepopulateProductOrderList(OrderProductList list);
+        Task<bool> Remove(int id);
     }
 }

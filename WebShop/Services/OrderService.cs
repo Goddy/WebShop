@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WebGrease.Css.Extensions;
 using WebShop.Models;
 using WebShop.Repositories;
@@ -30,9 +31,9 @@ namespace WebShop.Services
             //Make sure the user is fetched
             var newUser = _uow.UserRepository.Get(user.Id);
             //Create the order
-            var order = new Order {Account = newUser};
-            
-            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct{Amount = x.Amount, Product = x.Product}));
+            var order = new Order { Account = newUser };
+
+            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct { Amount = x.Amount, Product = x.Product }));
             _uow.OrderRepository.Add(order);
             return order;
         }
@@ -43,12 +44,28 @@ namespace WebShop.Services
             products.ForEach(x => orderList.OrderProductModels.Add(new OrderProductModel(_uow.ProductRepository.Get(x), 1)));
             return orderList;
         }
-    
 
-       public OrderProductList RepopulateProductOrderList(OrderProductList list)
+
+        public OrderProductList RepopulateProductOrderList(OrderProductList list)
         {
             list.OrderProductModels.ForEach(x => x.Product = _uow.ProductRepository.Get(x.ProductId));
             return list;
+        }
+
+        public async Task<bool> Remove(int id)
+        {
+            try
+            {
+                var order = await _uow.OrderRepository.GetAsync(id);
+                if (order == null)
+                    return false;
+                await _uow.OrderRepository.DeleteAsync(order);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
