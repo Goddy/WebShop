@@ -5,48 +5,6 @@ using WebShop.Models;
 
 namespace WebShop.ViewModel
 {
-    public class ExternalLoginConfirmationViewModel
-    {
-        [Required]
-        [Display(ResourceType = typeof (Locale), Name = "Email")]
-        public string Email { get; set; }
-    }
-
-    public class ExternalLoginListViewModel
-    {
-        public string ReturnUrl { get; set; }
-    }
-
-    public class SendCodeViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
-        public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
-    }
-
-    public class VerifyCodeViewModel
-    {
-        [Required]
-        public string Provider { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof (Locale), Name = "Code")]
-        public string Code { get; set; }
-        public string ReturnUrl { get; set; }
-
-        [Display(ResourceType = typeof (Locale), Name = "Remember_browser")]
-        public bool RememberBrowser { get; set; }
-
-        public bool RememberMe { get; set; }
-    }
-
-    public class ForgotViewModel
-    {
-        [Required]
-        [Display(ResourceType = typeof (Locale), Name = "Email")]
-        public string Email { get; set; }
-    }
 
     public class LoginViewModel
     {
@@ -129,14 +87,6 @@ namespace WebShop.ViewModel
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
-    }
-
-    public class ForgotPasswordViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(ResourceType = typeof (Locale), Name = "Email")]
-        public string Email { get; set; }
     }
 
     public class AccountsViewModel
