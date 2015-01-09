@@ -68,7 +68,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Assistent")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(Order model)
         {
