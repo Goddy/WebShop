@@ -33,7 +33,7 @@ namespace WebShop.Services
             //Create the order
             var order = new Order { Account = newUser, Status = Status.Paid};
 
-            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct { Amount = x.Amount, Product = x.Product }));
+            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct { Amount = x.Amount, Product = _uow.ProductRepository.Get(x.ProductId) }));
             _uow.OrderRepository.Add(order);
             return order;
         }
