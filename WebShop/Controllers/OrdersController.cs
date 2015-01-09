@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
+using WebShop.Models;
 using WebShop.Services;
 
 namespace WebShop.Controllers
@@ -43,7 +45,7 @@ namespace WebShop.Controllers
         {
             if (id == null)
                 return View("Error");
-            var order = await _orderService.Get((int) id);
+            var order = await _orderService.Get((int)id);
             if (order == null)
                 return View("Error");
             return View(order);
@@ -56,6 +58,16 @@ namespace WebShop.Controllers
                 return View("Error");
             await _orderService.Remove((int)id);
             return View("Overview", _orderService.GetAllOrders());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Save(Order model)
+        {
+            var order = await _orderService.Get(model.Id);
+            order.Status = model.Status;
+            return await _orderService.Save(order) ? View("Edit", order) : View("Error");
         }
     }
 }

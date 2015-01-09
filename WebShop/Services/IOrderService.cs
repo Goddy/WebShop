@@ -16,5 +16,6 @@ namespace WebShop.Services
         OrderProductList RepopulateProductOrderList(OrderProductList list);
         Task<bool> Remove(int id);
         Task<Order> Get(int id);
+        Task<bool> Save(Order order);
     }
 }

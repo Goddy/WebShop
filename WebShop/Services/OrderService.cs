@@ -72,5 +72,18 @@ namespace WebShop.Services
         {
             return await _uow.OrderRepository.GetAsync(id);
         }
+
+        public async Task<bool> Save(Order order)
+        {
+            try
+            {
+                await _uow.OrderRepository.UpdateAsync(order, order.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
