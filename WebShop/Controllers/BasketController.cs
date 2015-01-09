@@ -71,6 +71,7 @@ namespace WebShop.Controllers
             _orderService.BuildAndSaveOrder(orderProductList, GetUser());
             AddStatusMessage("Order successfully processed.");
             Session["order"] = null;
+            Session["cartProducts"] = null;
             return RedirectToAction("MyOrders","Orders");
         }
 
