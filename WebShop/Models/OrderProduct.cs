@@ -1,9 +1,12 @@
-﻿namespace WebShop.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebShop.Models
 {
     /// <summary>
     /// OrderProduct with a many to many rel to prod
     /// </summary>
-    public sealed class OrderProduct : AbstractEntity<int>
+    public class OrderProduct : AbstractEntity<int>
     {
         public OrderProduct()
         {
@@ -14,9 +17,17 @@
             Product = product;
             Amount = amount;
         }
-        public Product Product { get; set; }
+
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
+
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
+        public virtual Order Order { get; set; }
+
         public int Amount { get; set; }
-        public Order Order { get; set; }
+
 
         public double Total
         {

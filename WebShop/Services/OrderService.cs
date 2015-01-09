@@ -31,7 +31,8 @@ namespace WebShop.Services
             var newUser = _uow.UserRepository.Get(user.Id);
             //Create the order
             var order = new Order {Account = newUser};
-            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct(x.Product, x.Amount)));
+            
+            orderProductList.OrderProductModels.ForEach(x => order.OrderProducts.Add(new OrderProduct{Amount = x.Amount, Product = x.Product}));
             _uow.OrderRepository.Add(order);
             return order;
         }

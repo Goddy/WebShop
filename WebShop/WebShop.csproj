@@ -208,6 +208,14 @@
     <Compile Include="Migrations\201501071449218_Roles.Designer.cs">
       <DependentUpon>201501071449218_Roles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501090810465_Key1.cs" />
+    <Compile Include="Migrations\201501090810465_Key1.Designer.cs">
+      <DependentUpon>201501090810465_Key1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501090822021_Key2.cs" />
+    <Compile Include="Migrations\201501090822021_Key2.Designer.cs">
+      <DependentUpon>201501090822021_Key2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractEntity.cs" />
     <Compile Include="Models\Address.cs" />
@@ -344,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501071449218_Roles.resx">
       <DependentUpon>201501071449218_Roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501090810465_Key1.resx">
+      <DependentUpon>201501090810465_Key1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501090822021_Key2.resx">
+      <DependentUpon>201501090822021_Key2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

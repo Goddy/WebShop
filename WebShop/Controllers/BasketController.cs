@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using Microsoft.Owin.Security;
 using WebShop.Services;
 using WebShop.ViewModel;
 
@@ -9,10 +10,12 @@ namespace WebShop.Controllers
     public class BasketController : AbstractController
     {
         private readonly IOrderService _orderService;
+        private readonly IAuthenticationManager _authenticationManager;
 
-        public BasketController(IOrderService orderService, ApplicationUserManager applicationUserManager) : base (applicationUserManager)
+        public BasketController(IOrderService orderService, ApplicationUserManager applicationUserManager, IAuthenticationManager authenticationManager) : base (applicationUserManager)
         {
             _orderService = orderService;
+            _authenticationManager = authenticationManager;
         }
 
         [AllowAnonymous]
@@ -45,11 +48,19 @@ namespace WebShop.Controllers
         [HttpGet]
         public ActionResult Payment()
         {
-            Session["readyToPay"] = false;
-            var orderProductList = Session["order"] as OrderProductList;
-            ViewBag.address = GetUser().Address;
-            //Todo: Since the product object disappears in the model, we need to repopulate those objects, why????
-            return View(_orderService.RepopulateProductOrderList(orderProductList));
+            try
+            {
+                Session["readyToPay"] = false;
+                var orderProductList = Session["order"] as OrderProductList;
+                ViewBag.address = GetUser().Address;
+                //Todo: Since the product object disappears in the model, we need to repopulate those objects, why????
+                return View(_orderService.RepopulateProductOrderList(orderProductList));
+            }
+            catch (Exception)
+            {
+                _authenticationManager.SignOut();
+                return RedirectToAction("Index", "Products");
+            }
         }
 
         [Authorize]
