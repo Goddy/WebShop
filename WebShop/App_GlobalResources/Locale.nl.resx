@@ -458,4 +458,10 @@
   <data name="ShippingDetails" xml:space="preserve">
     <value>Verzend details</value>
   </data>
+  <data name="Any" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="PriceRange" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
 </root>

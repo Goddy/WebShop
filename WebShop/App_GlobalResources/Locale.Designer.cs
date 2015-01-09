@@ -151,6 +151,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any.
+        /// </summary>
+        public static string Any {
+            get {
+                return ResourceManager.GetString("Any", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Association Form.
         /// </summary>
         public static string AssociationForm {
@@ -841,6 +850,15 @@ namespace WebShop.App_GlobalResources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price range.
+        /// </summary>
+        public static string PriceRange {
+            get {
+                return ResourceManager.GetString("PriceRange", resourceCulture);
             }
         }
         

@@ -30,24 +30,30 @@
                     <li><a href="#"><strong>@Locale.Filter_by</strong></a></li>
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                        @Locale.Price <span class="caret"></span>
+                        @Locale.PriceRange <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        <li role="presentation">
+                            <span class="filter">
+                                @Html.RadioButton("cat", 0 + ", " + 10000000, searchClassPrice)
+                                @Html.Label(Locale.Any)
+                            </span>
+                        </li>
                         @foreach (var p in price)
                         {
                             <li role="presentation">
                                 <span class="filter">
-                                        @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
-                                        @Html.Label(Locale.Between + " " + p.Key + " " + Locale.And + " " + p.Value)
-                                    </span>
+                                    @Html.RadioButton("cat", p.Key + "," + p.Value, searchClassPrice)
+                                    @Html.Label(+ p.Key + " - " + p.Value)
+                                </span>
                             </li>
                             lastPrice = p.Value;
                         }
                         <li role="presentation">
                             <span class="filter">
-                                    @Html.RadioButton("cat", lastPrice + ", " + lastPrice*100, searchClassPrice)
-                                    @Html.Label(Locale.LargerThan + " " + lastPrice)
-                                </span>
+                                @Html.RadioButton("cat", lastPrice + ", " + lastPrice*10, searchClassPrice)
+                                @Html.Label("> " + lastPrice)
+                            </span>
                         </li>
                     </ul>
                 </li>

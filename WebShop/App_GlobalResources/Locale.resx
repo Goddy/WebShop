@@ -459,4 +459,10 @@
   <data name="ShippingDetails" xml:space="preserve">
     <value>Shipping details</value>
   </data>
+  <data name="Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="PriceRange" xml:space="preserve">
+    <value>Price range</value>
+  </data>
 </root>
