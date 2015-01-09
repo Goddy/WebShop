@@ -5,6 +5,8 @@
     /// </summary>
     public enum Status
     {
+        Created,
+        Paid,
         Sending,
         Cancelled,
         Completed
