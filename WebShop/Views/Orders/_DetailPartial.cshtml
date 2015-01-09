@@ -1,0 +1,88 @@
+﻿@using WebShop.App_GlobalResources
+@model WebShop.Models.Order
+
+<div>
+    <h4>@Locale.Products</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<p>
+    <table class="table">
+        <tr>
+            <th>
+                @Locale.Name
+            </th>
+            <th>
+                @Locale.CategoryTitle
+            </th>
+            <th>
+                @Locale.Amount
+            </th>
+            <th>
+                @Locale.Price
+            </th>
+        </tr>
+
+        @foreach (var item in Model.OrderProducts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Category)
+                </td>
+                @{
+                    var count = Model.OrderProducts.Where(x => x.Product.Id.Equals(item.ProductId)).Sum(x => x.Amount);
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2"></td>
+            <td>@Locale.Total</td>
+            @{
+                var total = Model.GetTotalPrice();
+            }
+            <td>
+                @Html.DisplayFor(modelItem => total)
+            </td>
+        </tr>
+    </table>
+    <div>
+        <h4>@Locale.ShippingDetails</h4>
+        <hr />
+        <dl class="dl-horizontal"></dl>
+    </div>
+    <table>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.Name</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Name)</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.Street</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Address.Street)</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.Number</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Address.Number)</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.Postal_Code</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Address.PostalCode)</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.City</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Address.City)</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;"><b>@Locale.Country</b></td>
+            <td>@Html.DisplayFor(model => model.Account.Address.Country)</td>
+        </tr>
+    </table>
+</p>

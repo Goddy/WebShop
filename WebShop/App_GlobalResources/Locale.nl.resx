@@ -449,4 +449,13 @@
   <data name="Orders" xml:space="preserve">
     <value>Bestellingen</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Bedrag</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="ShippingDetails" xml:space="preserve">
+    <value>Verzend details</value>
+  </data>
 </root>

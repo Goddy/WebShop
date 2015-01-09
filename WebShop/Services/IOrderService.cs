@@ -15,5 +15,6 @@ namespace WebShop.Services
         OrderProductList BuildOrderProductListFromBasket(HashSet<int> products);
         OrderProductList RepopulateProductOrderList(OrderProductList list);
         Task<bool> Remove(int id);
+        Task<Order> Get(int id);
     }
 }

@@ -326,6 +326,8 @@
     <Content Include="Views\Account\Accounts.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Orders\Overview.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\_DetailPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

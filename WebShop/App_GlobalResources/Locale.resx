@@ -450,4 +450,13 @@
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ShippingDetails" xml:space="preserve">
+    <value>Shipping details</value>
+  </data>
 </root>

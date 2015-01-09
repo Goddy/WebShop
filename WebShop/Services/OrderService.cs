@@ -67,5 +67,10 @@ namespace WebShop.Services
             }
             return true;
         }
+
+        public async Task<Order> Get(int id)
+        {
+            return await _uow.OrderRepository.GetAsync(id);
+        }
     }
 }

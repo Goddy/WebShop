@@ -39,9 +39,14 @@ namespace WebShop.Controllers
         }
 
         [Authorize(Roles = "Admin, Assistent")]
-        public ActionResult Edit(int? id)
+        public async Task<ViewResult> Edit(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                return View("Error");
+            var order = await _orderService.Get((int) id);
+            if (order == null)
+                return View("Error");
+            return View(order);
         }
 
         [Authorize(Roles = "Admin, Assistent")]
