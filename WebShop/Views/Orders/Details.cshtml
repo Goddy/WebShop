@@ -1,0 +1,23 @@
+﻿@using WebShop.App_GlobalResources
+@model WebShop.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Locale.Details</h2>
+<div>
+    <h4>@Locale.Status</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<div style="margin-bottom: 30px;">
+    @Html.DisplayFor(model => model.Status)
+</div>
+<div>
+    @Html.Partial("_DetailPartial")
+</div>
+<p style="margin-top: 20px;">
+    @Html.ActionLink(@Locale.Back_to_List, "MyOrders")
+</p>

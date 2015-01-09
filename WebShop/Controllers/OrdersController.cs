@@ -34,6 +34,15 @@ namespace WebShop.Controllers
             }
         }
 
+        [Authorize]
+        public async Task<ViewResult> Details(int? id)
+        {
+            if (id == null)
+                return View("Error");
+            var order = await _orderService.Get((int)id);
+            return order == null ? View("Error") : View(order);
+        }
+
         [Authorize(Roles = "Admin, Assistent")]
         public ActionResult Overview()
         {
@@ -46,9 +55,7 @@ namespace WebShop.Controllers
             if (id == null)
                 return View("Error");
             var order = await _orderService.Get((int)id);
-            if (order == null)
-                return View("Error");
-            return View(order);
+            return order == null ? View("Error") : View(order);
         }
 
         [Authorize(Roles = "Admin, Assistent")]
