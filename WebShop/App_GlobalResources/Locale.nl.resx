@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -467,5 +466,8 @@
   </data>
   <data name="BasketModalBody" xml:space="preserve">
     <value>Product toegevoegd aan winkelmandje.</value>
+  </data>
+  <data name="OrderOverview" xml:space="preserve">
+    <value>Bestellingsoverzicht</value>
   </data>
 </root>

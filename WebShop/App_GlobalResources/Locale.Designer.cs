@@ -782,6 +782,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order overview.
+        /// </summary>
+        public static string OrderOverview {
+            get {
+                return ResourceManager.GetString("OrderOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Orders.
         /// </summary>
         public static string Orders {
