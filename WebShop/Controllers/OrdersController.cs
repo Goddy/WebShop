@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net.Http.Headers;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
@@ -46,7 +46,7 @@ namespace WebShop.Controllers
         [Authorize(Roles = "Admin, Assistent")]
         public ActionResult Overview()
         {
-            return View(_orderService.GetAllOrders());
+            return View(_orderService.GetAllOrders().OrderByDescending(x=>x.Id));
         }
 
         [Authorize(Roles = "Admin, Assistent")]
