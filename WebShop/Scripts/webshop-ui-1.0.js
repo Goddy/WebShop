@@ -68,6 +68,26 @@ webShop.searchProducts = (function($, utils) {
 }(jQuery, webShop.utils));
 
 webShop.basketUtils = (function ($, utils) {
+    function replaceComma(text) {
+        return text.replace(",", ".");
+    }
+
+    function replaceDots(text) {
+        return text.replace(".", ",");
+    }
+
+    function updateTotal() {
+        var total = 0.00;
+        $(".amount").each(function () {
+            var price = parseFloat(replaceComma($(this).next().text()));
+            var amount = parseFloat($(this).val());
+            total = parseFloat(total) + parseFloat(amount * price);
+            total = parseFloat(total).toFixed(2);
+        });
+        total = replaceDots(total.toString());
+        $(".grandTotal").text(total);
+    }
+
     return {
         addToBasket: function (element) {
             var id = element.attr("href");
@@ -76,6 +96,9 @@ webShop.basketUtils = (function ($, utils) {
                 console.log("Product added to session");
                 $("#addToBasketModal").modal();
             });
+        },
+        updatePrices: function(element) {
+            updateTotal();
         }
     }
 }(jQuery, webShop.utils));

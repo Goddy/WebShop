@@ -187,6 +187,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product successfully added to basket..
+        /// </summary>
+        public static string BasketModalBody {
+            get {
+                return ResourceManager.GetString("BasketModalBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Between.
         /// </summary>
         public static string Between {
