@@ -4,14 +4,24 @@
 @*
     Partial view for  product search results, returns nothing if no results are found.
 *@
+@{
+    var counter = 0;
+    var closeDiv = 0;
+}
 @if (Model.Any())
 {
-    <div id="products" class="row list-group">
+    <div id="products" class="list-group">
         @foreach (var item in Model)
         {
-            <div class="item  col-md-4">
+            if (counter == 0 || counter%3 == 0)
+            {
+                @:<div class="row">
+                closeDiv = counter + 2;
+
+            }
+            <div class="item col-md-4">
                 <div class="thumbnail">
-                    <img class="group list-group-image" src="@((item.Image != null) ? Url.Content(@item.Image.Location) : @Url.Content("~/Images/Custom/placeholder.png"))" onerror=" this.onerror = null; this.src = 'http://placehold.it/400x250/000/fff'; " alt="@item.Name" />
+                    <img class="group list-group-image" src="@((item.Image != null) ? Url.Content(@item.Image.Location) : @Url.Content("~/Images/Custom/placeholder.png"))" onerror=" this.onerror = null; this.src = 'http://placehold.it/400x250/000/fff'; " alt="@item.Name"/>
                     <div class="caption">
                         <h4 class="group inner list-group-item-heading">
                             @Html.DisplayFor(modelItem => item.Name)
@@ -23,7 +33,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row buttons">
                             <div class="col-xs-12 col-md-6">
                                 <a class="btn btn-success" id="detail" href="@Url.Action("ProductDetail", new {id = item.Id})"><span class="glyphicon glyphicon-list"></span>&nbsp;@Locale.Details</a>
                             </div>
@@ -34,6 +44,10 @@
                     </div>
                 </div>
             </div>
+            if (counter == closeDiv) {
+                @:</div>
+            }
+            counter++;
         }
     </div>
 }
