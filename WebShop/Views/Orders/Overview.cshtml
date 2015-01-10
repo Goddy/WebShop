@@ -34,7 +34,7 @@
             var totalprice = item.OrderProducts.Sum(x => x.Product.Price);
         }
         <td>
-            @Html.DisplayFor(modelItem => totalprice)
+            €@Html.DisplayFor(modelItem => totalprice)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

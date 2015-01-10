@@ -39,7 +39,7 @@
                     @Html.DisplayFor(modelItem => count)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product.Price)
+                    €@Html.DisplayFor(modelItem => item.Product.Price)
                 </td>
             </tr>
         }
@@ -50,7 +50,7 @@
                 var total = Model.GetTotalPrice();
             }
             <td>
-                @Html.DisplayFor(modelItem => total)
+                €@Html.DisplayFor(modelItem => total)
             </td>
         </tr>
     </table>
