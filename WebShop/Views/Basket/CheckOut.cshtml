@@ -28,7 +28,7 @@ else
                                         <h5><span class="glyphicon glyphicon-shopping-cart"></span> @Locale.Basket</h5>
                                     </div>
                                     <div class="col-xs-6">
-                                        <button type="button" onclick="window.location.href='@Url.Action("Index", "Products" )'" class="btn btn-primary btn-sm btn-block">
+                                        <button type="button" onclick="window.location.href='@Url.Action("Index", "Products" )'" class="btn btn-primary btn-sm btn-block" style="margin-top: 4px;">
                                             <span class="glyphicon glyphicon-share-alt"></span> @Locale.ContinueShopping
                                         </button>
                                     </div>
@@ -56,7 +56,7 @@ else
                                         </div>
                                         <div class="col-xs-2">
                                             <button type="button" class="btn btn-link btn-xs" onclick="window.location.href = '@Url.Action("Remove", new { id = Model.OrderProductModels[i].ProductId })'">
-                                                <span class="glyphicon glyphicon-trash"> </span>
+                                                <span class="glyphicon glyphicon-trash" style="margin-top: 5px;"> </span>
                                             </button>
                                         </div>
                                     </div>
