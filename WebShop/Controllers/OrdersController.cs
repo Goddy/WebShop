@@ -25,7 +25,7 @@ namespace WebShop.Controllers
         {
             try
             {
-                return View(GetUser().Orders);
+                return View(GetUser().Orders.OrderByDescending(x=>x.Id));
             }
             catch (Exception)
             {

@@ -19,7 +19,7 @@ else {
         <tr>
             <th>@Locale.Id</th>
             <th>@Locale.Status</th>
-            <th>@Locale.Products</th>
+            <th>@Locale.Total</th>
             <th></th>
         </tr>
 
@@ -33,12 +33,10 @@ else {
                     @Html.DisplayFor(m => item.Status)
                 </td>
                 <td>
-                    <ul class="list-group">
-                        @foreach (var product in item.OrderProducts)
-                        {
-                            <li class="list-group-item">@Html.DisplayFor(m => product.Product.Name) (@Html.DisplayFor(m => product.Amount))</li>
-                        }
-                    </ul>
+                    @{
+                        var total = item.GetTotalPrice();
+                    }
+                    €@Html.DisplayFor(m => total)
                 </td>
                 <td>
                     @Html.ActionLink(Locale.Details, "Details", new { id=item.Id })
