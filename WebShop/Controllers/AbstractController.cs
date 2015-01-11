@@ -7,17 +7,17 @@ namespace WebShop.Controllers
 {
     public abstract class AbstractController : Controller
     {
-        private readonly ApplicationUserManager _userManager;
+        protected readonly ApplicationUserManager UserManager;
 
         protected AbstractController(ApplicationUserManager userManager)
         {
-            _userManager = userManager;
+            UserManager = userManager;
         }
 
         protected ApplicationUser GetUser()
         {
             var userid = User.Identity.GetUserId();
-            return _userManager.Users.FirstOrDefault(x => x.Id.Equals(userid));
+            return UserManager.Users.FirstOrDefault(x => x.Id.Equals(userid));
         }
 
         protected bool IsAuthenticated()

@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title.</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+@Html.Partial("_ResultMessage")
 <div>
     <h4>@Locale.Password</h4>
     <hr />
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">@Locale.Role</label>
                     <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.Roles, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EnumDropDownListFor(model => model.Roles, new { @class = "form-control" })
                     </div>
                 </div>
             } 

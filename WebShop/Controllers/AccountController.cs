@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -105,7 +106,7 @@ namespace WebShop.Controllers
                 if (User.IsInRole("Admin"))
                 {
                     await _userManager.AddToRoleAsync(user.Id, model.Role.ToString());
-                    AddStatusMessage("Succesfully added user " + user.UserName);
+                    AddStatusMessage(string.Format(Locale.Account_Added, user.UserName));
                     ModelState.Clear();
                     return View();
                 }
@@ -183,7 +184,7 @@ namespace WebShop.Controllers
             if (user != null)
             {
                 await _userManager.DeleteAsync(user);
-                AddStatusMessage("Successfully deleted user");
+                AddStatusMessage(string.Format(Locale.Account_Deleted, user.Name));
                 return View("Accounts", new AccountsViewModel(_userManager.Users.ToList(), _applicationRoleManager.Roles.ToList()));
             }
             AddStatusMessage("Unable to remove user");

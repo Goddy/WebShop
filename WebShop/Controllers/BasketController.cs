@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
+using WebShop.App_GlobalResources;
 using WebShop.Services;
 using WebShop.ViewModel;
 
@@ -69,7 +70,7 @@ namespace WebShop.Controllers
         {
             var orderProductList = Session["order"] as OrderProductList;
             _orderService.BuildAndSaveOrder(orderProductList, GetUser());
-            AddStatusMessage("Order successfully processed.");
+            AddStatusMessage(Locale.Basket_OrderProcessed);
             Session["order"] = null;
             Session["cartProducts"] = null;
             return RedirectToAction("MyOrders","Orders");

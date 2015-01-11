@@ -110,7 +110,7 @@ namespace WebShop.Controllers
 
             if (result == null)
                 return View(product);
-            AddStatusMessage("Successfully added " + result.Name);
+            AddStatusMessage(String.Format(Locale.Product_Added, product.Name));
             return View();
         }
 
@@ -131,7 +131,7 @@ namespace WebShop.Controllers
             {
                 await _productService.SaveProduct(product);
             }
-            AddStatusMessage(product.Name + " was successfully updated.");
+            AddStatusMessage(String.Format(Locale.Product_Changed, product.Name));
             return View();
         }
 

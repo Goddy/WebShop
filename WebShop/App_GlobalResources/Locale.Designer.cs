@@ -61,11 +61,56 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} was successfully added..
+        /// </summary>
+        public static string Account_Added {
+            get {
+                return ResourceManager.GetString("Account_Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has been changed..
+        /// </summary>
+        public static string Account_ChangePasswordSuccess {
+            get {
+                return ResourceManager.GetString("Account_ChangePasswordSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} was successfully deleted..
+        /// </summary>
+        public static string Account_Deleted {
+            get {
+                return ResourceManager.GetString("Account_Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account overview.
         /// </summary>
         public static string Account_Overview {
             get {
                 return ResourceManager.GetString("Account_Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The changes have been saved..
+        /// </summary>
+        public static string Account_Saved {
+            get {
+                return ResourceManager.GetString("Account_Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has been set..
+        /// </summary>
+        public static string Account_SetPasswordSuccess {
+            get {
+                return ResourceManager.GetString("Account_SetPasswordSuccess", resourceCulture);
             }
         }
         
@@ -183,6 +228,15 @@ namespace WebShop.App_GlobalResources {
         public static string Basket {
             get {
                 return ResourceManager.GetString("Basket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The order was successfully created..
+        /// </summary>
+        public static string Basket_OrderProcessed {
+            get {
+                return ResourceManager.GetString("Basket_OrderProcessed", resourceCulture);
             }
         }
         
@@ -521,6 +575,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error has occurred..
+        /// </summary>
+        public static string FailWhale {
+            get {
+                return ResourceManager.GetString("FailWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File input.
         /// </summary>
         public static string File_input {
@@ -836,6 +899,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password provided is not correct..
+        /// </summary>
+        public static string PasswordMismatch {
+            get {
+                return ResourceManager.GetString("PasswordMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment.
         /// </summary>
         public static string Payment_Title {
@@ -886,6 +958,24 @@ namespace WebShop.App_GlobalResources {
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product {0} was sucessfully created..
+        /// </summary>
+        public static string Product_Added {
+            get {
+                return ResourceManager.GetString("Product_Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product {0} was successfully updated..
+        /// </summary>
+        public static string Product_Changed {
+            get {
+                return ResourceManager.GetString("Product_Changed", resourceCulture);
             }
         }
         
