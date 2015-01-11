@@ -3,9 +3,11 @@ WebShop
 A simple webshop as per demonstration of our knowledge of the ASP.NET framework.
 
 
-#### Beware
+#### Setup
 
-As I do not yet have an idea on how to include the roles into the configuration script, quickly execute these commands after a deploy:
+To initiate the database open the package manager console and enter 
 
-    insert into AspNetRoles (Id, Name) values (1, 'admin');
-    insert into AspNetUserRoles(userid, roleid) values ((select id from AspNetUsers where name = 'Admin'), 1);
+    update-database
+    
+This will drop and re-create the database with data to be able to debug/display the site.
+Make sure all connections to the database are closed before applying this.
