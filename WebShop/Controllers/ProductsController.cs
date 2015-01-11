@@ -72,8 +72,15 @@ namespace WebShop.Controllers
             if (id == null)
                 return View("Error");
             var product = await _productService.DeleteProduct((int)id);
-            AddStatusMessage((product != null)? "Successfully removed " + product.Name : "Unable to remove product");
-            return View("Overview", _productService.GetAllProducts());
+            if (product != null)
+            {
+                AddStatusMessage(string.Format(Locale.Product_Removed, product.Name));
+                return View("Overview", _productService.GetAllProducts());
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
         // GET: Products

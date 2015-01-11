@@ -502,4 +502,7 @@
   <data name="Product_Changed" xml:space="preserve">
     <value>Product {0} was successfully updated.</value>
   </data>
+  <data name="Product_Removed" xml:space="preserve">
+    <value>Product {0} was successfully removed.</value>
+  </data>
 </root>

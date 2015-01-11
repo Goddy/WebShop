@@ -325,7 +325,7 @@
     <value>Nummer</value>
   </data>
   <data name="Overview" xml:space="preserve">
-    <value>Product overrzicht</value>
+    <value>Product overzicht</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Wachtwoord</value>
@@ -500,5 +500,8 @@
   </data>
   <data name="Product_Changed" xml:space="preserve">
     <value>Het product {0} werd succesvol gewijzigd.</value>
+  </data>
+  <data name="Product_Removed" xml:space="preserve">
+    <value>Het product {0} werd succesvol verwijderd.</value>
   </data>
 </root>

@@ -989,6 +989,15 @@ namespace WebShop.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product {0} was successfully removed..
+        /// </summary>
+        public static string Product_Removed {
+            get {
+                return ResourceManager.GetString("Product_Removed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {
