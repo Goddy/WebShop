@@ -171,15 +171,15 @@ namespace WebShop.Controllers
             {
                 var fileExt = extension.Substring(1);
 
-                if (!supportedTypes.Contains(fileExt))
+                if (!supportedTypes.Contains(fileExt.ToLower()))
                 {
-                    ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                    ModelState.AddModelError("image", Locale.Unsupported_Image);
                     return new Tuple<Image, ViewResult>(null, view);
                 }
             }
             else
             {
-                ModelState.AddModelError("photo", Locale.Unsupported_Image);
+                ModelState.AddModelError("image", Locale.Unsupported_Image);
                 return new Tuple<Image, ViewResult>(null, view);  
             }
             var fileName = Guid.NewGuid() + extension;
