@@ -1,4 +1,5 @@
 ﻿@using WebShop.App_GlobalResources
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,8 +137,8 @@
                                           <li>@Html.ActionLink(@Locale.OrderOverview, "Overview", "Orders")</li>
                                           @if (User.IsInRole("Admin"))
                                           {
-                                            <li>@Html.ActionLink(Locale.Add_User, "Register", "Account")</li>
-                                            <li>@Html.ActionLink(Locale.Account_Overview, "Accounts", "Account")</li>
+                                              <li>@Html.ActionLink(Locale.Add_User, "Register", "Account")</li>
+                                              <li>@Html.ActionLink(Locale.Account_Overview, "Accounts", "Account")</li>
                                           }
                                       </ul>
                                   </li>
@@ -161,5 +162,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#changeLang").click(function () {
+                document.cookie = "language=" + this.text.toLowerCase() + ";";
+                window.location.reload();
+            });
+        });
+    </script>
 </body>
 </html>
