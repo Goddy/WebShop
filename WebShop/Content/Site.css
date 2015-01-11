@@ -76,3 +76,12 @@ textarea {
         padding-bottom: 10px;
     }
 }
+
+/*
+    Font in basket is too large for small screens.
+*/
+@media(max-width:768px){
+    .product-name {
+        font-size:small;
+    }
+}
